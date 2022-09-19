@@ -102,9 +102,17 @@ body {
     gap: 20px;
 }
 
+.news-item__image-container {
+    position: relative;
+    min-width: 344px;
+    min-height: 344px;
+}
+
 .news-item__image {
-    width: 344px;
-    height: 344px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .news-item__about {
