@@ -7,7 +7,7 @@
     display: revert;
 }
 
-a {
+a, button {
     cursor: pointer;
 }
 
