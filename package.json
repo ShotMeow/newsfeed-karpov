@@ -7,7 +7,8 @@
     "url": "https://git.lab.karpov.courses/d-mavrin/newsfeed.git"
   },
   "scripts": {
-    "serve": "npx webpack serve"
+    "start": "NODE_ENV=development webpack serve",
+    "build": "webpack"
   },
   "keywords": [
     "news",

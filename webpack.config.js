@@ -8,7 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.[contenthash].js'
     },
-    mode: "development",
+    mode: process.env.NODE_ENV || 'production',
     module: {
         rules: [
             {
