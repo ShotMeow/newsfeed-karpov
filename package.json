@@ -1,0 +1,22 @@
+{
+  "name": "newsfeed",
+  "version": "1.0.0",
+  "description": "NewsFeed Pet Project",
+  "repository": {
+    "type": "git",
+    "url": "https://git.lab.karpov.courses/d-mavrin/newsfeed.git"
+  },
+  "keywords": [
+    "news",
+    "pet",
+    "project",
+    "newsfeed"
+  ],
+  "author": "ShotMeow",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-react": "^7.18.6"
+  }
+}
