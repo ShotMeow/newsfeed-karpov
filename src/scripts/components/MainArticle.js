@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const MainArticle = ({image, category, title, description, source}) => {
     return <article className="news-item">
         <div className="news-item__image-container">

@@ -1,6 +1,8 @@
 import { Navigation } from "./Navigation.js";
 import { MainArticle } from "./MainArticle.js";
 import { SmallArticle } from "./SmallArticle.js";
+import React from 'react';
+import { categories } from "../utils";
 export const App = () => {
   const [category, setCategory] = React.useState('index');
   const [articles, setArticles] = React.useState({

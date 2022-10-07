@@ -1,4 +1,5 @@
 import { categories } from "../utils.js";
+import React from 'react';
 export const Navigation = ({
   category,
   onNavClick,
@@ -12,7 +13,7 @@ export const Navigation = ({
     className: "navigation__logo"
   }, /*#__PURE__*/React.createElement("img", {
     className: "navigation__image",
-    src: "src/images/logo.svg",
+    src: "../../src/images/logo.svg",
     alt: "\u041B\u043E\u0433\u043E\u0442\u0438\u043F"
   })), /*#__PURE__*/React.createElement("ul", {
     className: "navigation__list"
