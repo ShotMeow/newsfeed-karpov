@@ -3,6 +3,7 @@ import { MainArticle } from "./MainArticle.js";
 import { SmallArticle } from "./SmallArticle.js";
 import React from 'react';
 import { categories } from "../utils";
+import '../../styles/style.css';
 
 export const App = () => {
     const [category, setCategory] = React.useState('index');
