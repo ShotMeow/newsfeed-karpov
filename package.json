@@ -6,6 +6,9 @@
     "type": "git",
     "url": "https://git.lab.karpov.courses/d-mavrin/newsfeed.git"
   },
+  "scripts": {
+    "build": "npx babel ./src/scripts/ --out-dir dist/ && npx webpack"
+  },
   "keywords": [
     "news",
     "pet",
