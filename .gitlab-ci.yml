@@ -9,6 +9,6 @@ pages:
     - cp -r dist public
   artifacts:
     paths:
-      - public
+      - dist
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

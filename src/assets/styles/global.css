@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap');
+
+:root {
+    --color-primary: #262A2F;
+    --color-accent: #FF5533;
+    --color-grey: #868686;
+    --color-white: #FFFFFF;
+
+    --container-width: 1440px;
+    --grid-column-width: 98px;
+    --grid-gap: 20px;
+}
+
+* {
+    all: unset;
+    display: revert;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--color-primary);
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: var(--container-width);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, var(--grid-column-width));
+    gap: var(--grid-gap);
+}
+
+.article-date,
+.article-source {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+
+.article-source {
+    color: var(--color-grey);
+}
+
+.article-date {
+    color: var(--color-accent);
+}
+
+.article-date + .article-source::before {
+    content: ' · ';
+}
+
+.article-category {
+    display: block;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.article-img {
+    background: #ccc;
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
