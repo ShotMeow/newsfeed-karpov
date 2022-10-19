@@ -1,11 +1,11 @@
 .articles {
-    margin-bottom: 135px;
+  margin-bottom: 135px;
 }
 
 .articles__big-column {
-    grid-column: span 9;
+  grid-column: span 9;
 }
 
 .articles__small-column {
-    grid-column: 10/-1;
+  grid-column: 10/-1;
 }

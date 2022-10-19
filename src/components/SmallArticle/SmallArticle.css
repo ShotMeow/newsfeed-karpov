@@ -1,22 +1,22 @@
 .small-article {
-    margin-bottom: 35px;
-    padding-left: 11px;
-    border-left: 9px solid var(--color-primary);
-    cursor: pointer;
+  margin-bottom: 35px;
+  padding-left: 11px;
+  border-left: 9px solid var(--color-primary);
+  cursor: pointer;
 }
 
 .small-article:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .small-article__title {
-    margin-bottom: 14px;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
-    color: var(--color-primary);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  margin-bottom: 14px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
