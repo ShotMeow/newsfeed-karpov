@@ -5,28 +5,33 @@ import SingleLineTitleArticle from '../SingleLineTitleArticle/SingleLineTitleArt
 import RelatedSmallArticle from '../RelatedSmallArticle/RelatedSmallArticle';
 
 import './ArticleItem.css';
+import { useParams } from 'react-router-dom';
 
-interface Props {
-  id: number;
-  categories: Category[];
-  sources: Source[];
-  onArticleClick: (id: number) => void;
-}
-
-const ArticleItem: FC<Props> = ({ id, categories, sources, onArticleClick }) => {
+const ArticleItem: FC = () => {
+  const { id } = useParams();
   const [articleItem, setArticleItem] = React.useState<ArticleItemAPI | null>(null);
   const [relatedArticles, setRelatedArticles] = React.useState<Article[] | null>(null);
+  const [categories, setCategories] = React.useState<Category[]>([]);
+  const [sources, setSources] = React.useState<Source[]>([]);
 
   React.useEffect(() => {
     fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`)
       .then((response) => response.json())
       .then(setArticleItem);
 
-    fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`)
-      .then((response) => response.json())
-      .then((response: RelatedArticlesAPI) => {
-        setRelatedArticles(response.items);
-      });
+    Promise.all([
+      fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) => response.json()),
+      fetch('https://frontend.karpovcourses.net/api/v2/categories').then((response) => response.json()),
+      fetch('https://frontend.karpovcourses.net/api/v2/sources').then((response) => response.json()),
+    ]).then((responses) => {
+      const articles: RelatedArticlesAPI = responses[0];
+      const categories: Category[] = responses[1];
+      const sources: Source[] = responses[2];
+
+      setRelatedArticles(articles.items);
+      setCategories(categories);
+      setSources(sources);
+    });
   }, [id]);
 
   if (articleItem === null || relatedArticles === null) {
@@ -74,12 +79,12 @@ const ArticleItem: FC<Props> = ({ id, categories, sources, onArticleClick }) => 
 
               return (
                 <RelatedSmallArticle
+                  id={item.id}
                   key={item.id}
                   title={item.title}
                   category={category?.name || ''}
                   source={source?.name || ''}
                   image={item.image}
-                  onClick={() => onArticleClick(item.id)}
                 />
               );
             })}
@@ -98,13 +103,13 @@ const ArticleItem: FC<Props> = ({ id, categories, sources, onArticleClick }) => 
 
               return (
                 <SingleLineTitleArticle
+                  id={item.id}
                   key={item.id}
                   image={item.image}
                   title={item.title}
                   text={item.description}
                   category={category?.name || ''}
                   source={source?.name || ''}
-                  onClick={() => onArticleClick(item.id)}
                 />
               );
             })}

@@ -4,6 +4,7 @@
 
 .navigation__logo {
   display: block;
+  cursor: pointer;
 }
 
 .navigation__logo-image {

@@ -5,6 +5,11 @@ import './assets/styles/fonts.css';
 import './assets/styles/global.css';
 
 import App from './components/App/App';
+import { HashRouter } from 'react-router-dom';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
-root.render(<App />);
+root.render(
+  <HashRouter>
+    <App />
+  </HashRouter>
+);

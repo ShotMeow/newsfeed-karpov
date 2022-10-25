@@ -1,14 +1,18 @@
 .related-small-article {
   margin-bottom: 35px;
-  display: grid;
-  grid-template-columns: repeat(4, var(--grid-column-width));
-  gap: var(--grid-gap);
-  align-items: center;
+  display: block;
   cursor: pointer;
 }
 
 .related-small-article:last-child {
   margin-bottom: 0;
+}
+
+.related-small-article__container {
+  display: grid;
+  grid-template-columns: repeat(4, var(--grid-column-width));
+  gap: var(--grid-gap);
+  align-items: center;
 }
 
 .related-small-article__image {

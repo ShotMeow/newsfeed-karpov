@@ -4,13 +4,25 @@ import { NewsAPI } from '../../assets/types/api.types';
 import MainArticle from '../MainArticle/MainArticle';
 
 import './Articles.css';
+import { categoryIds } from '../../assets/utils/utils';
+import { useParams } from 'react-router-dom';
 
-interface Props {
-  articles: NewsAPI;
-  onArticleClick: (id: number) => void;
-}
+const Articles: FC = () => {
+  const { categoryId = 'index' }: { categoryId?: string } = useParams();
+  const [articles, setArticles] = React.useState<NewsAPI>({
+    items: [],
+    categories: [],
+    sources: [],
+  });
 
-const Articles: FC<Props> = ({ articles, onArticleClick }) => {
+  React.useEffect(() => {
+    fetch('https://frontend.karpovcourses.net/api/v2/ru/news/' + categoryIds[categoryId] || '')
+      .then((response) => response.json())
+      .then((response: NewsAPI) => {
+        setArticles(response);
+      });
+  }, [categoryId]);
+
   return (
     <section className="articles">
       <div className="container grid">
@@ -21,13 +33,13 @@ const Articles: FC<Props> = ({ articles, onArticleClick }) => {
 
             return (
               <MainArticle
-                key={item.title}
+                key={item.id}
+                id={item.id}
                 title={item.title}
                 description={item.description}
                 image={item.image}
                 category={category ? category.name : ''}
                 source={source?.name || ''}
-                onClick={() => onArticleClick(item.id)}
               />
             );
           })}
@@ -37,11 +49,11 @@ const Articles: FC<Props> = ({ articles, onArticleClick }) => {
             const source = articles.sources.find(({ id }) => item.source_id === id);
             return (
               <SmallArticle
-                key={item.title}
+                key={item.id}
+                id={item.id}
                 title={item.title}
                 source={source?.name || ''}
                 date={item.date}
-                onClick={() => onArticleClick(item.id)}
               />
             );
           })}
