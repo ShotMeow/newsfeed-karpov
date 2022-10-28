@@ -35,7 +35,7 @@ deploy:
   image: alpine:latest
   stage: deploy
   before_script:
-    - apk update && apk add rsync
+    - apk update && apk add rsync openssh
   script:
     - rsync -a --delete dist/ shotmeow@95.216.147.185:/home/shotmeow/newsfeed
   only:
