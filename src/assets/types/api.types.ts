@@ -13,6 +13,7 @@ export interface ArticleItemAPI {
   image: string;
   link: string;
   text: string;
+  author?: string;
   category: Category;
   source: Source;
 }

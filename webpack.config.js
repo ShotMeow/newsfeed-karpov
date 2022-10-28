@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.[contenthash].js',
+    publicPath: '/',
   },
   mode: process.env.NODE_ENV ? 'development' : 'production',
   module: {
@@ -48,5 +49,6 @@ module.exports = {
   ],
   devServer: {
     open: true,
+    historyApiFallback: true,
   },
 };

@@ -1,0 +1,29 @@
+.article-item-info__link {
+  cursor: pointer;
+  padding-left: 16px;
+  font-size: 16px;
+  color: var(--color-grey);
+}
+
+.article-item-info__author {
+  padding-left: 8px;
+  font-size: 14px;
+  color: var(--color-grey);
+}
+
+.article-item-info__category-container {
+  display: flex;
+  grid-column: span 5;
+  align-items: center;
+}
+
+.article-item-info__category {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.article-item-info__date {
+  grid-column: 6/-1;
+  font-size: 20px;
+  line-height: 24px;
+}
