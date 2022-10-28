@@ -1,14 +1,42 @@
-image: node:16.17.0
+stages:
+  - test
+  - build
+  - deploy
 
-pages:
-  stage: deploy
+code_quality:
+  image: node:16.17.0
+
+  stage: test
   before_script:
-    - npm install
+    - npm ci
+  script:
+    - npm run eslint
+    - npm run stylelint
+    - npm run prettier-check
+  only:
+    - merge_requests
+
+build:
+  image: node:16.17.0
+
+  stage: build
+  before_script:
+    - npm ci
   script:
     - npm run build
-    - cp -r dist public
   artifacts:
     paths:
-      - public
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      - dist
+  only:
+    - merge_requests
+    - master
+
+deploy:
+  image: alpine:latest
+  stage: deploy
+  before_script:
+    - apk update && apk add rsync
+  script:
+    - rsync -a --delete dist/ shotmeow@95.216.147.185:/home/shotmeow/newsfeed
+  only:
+    - master
