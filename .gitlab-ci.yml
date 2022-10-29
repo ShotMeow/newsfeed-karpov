@@ -46,6 +46,6 @@ deploy:
     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
     - chmod 600 ~/.ssh/known_hosts
   script:
-    - rsync -a --delete dist/ shotmeow@95.216.147.185:/home/shotmeow/newsfeed
+    - rsync -a --delete dist/ $VPS_PATH
   only:
     - master
