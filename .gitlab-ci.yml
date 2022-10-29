@@ -34,6 +34,9 @@ build:
 deploy:
   image: alpine:latest
   stage: deploy
+  environment:
+    name: production
+  resource_group: production
   before_script:
     - apk update && apk add rsync openssh
     - mkdir ~/.ssh
