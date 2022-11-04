@@ -6,7 +6,7 @@ import RelatedSmallArticle from '../RelatedSmallArticle/RelatedSmallArticle';
 
 import './ArticleItem.css';
 import { useParams } from 'react-router-dom';
-import ArticleItemInfo from '../ArticleItemInfo/ArticleItemInfo';
+import ArticleItemInfo from './ArticleItemInfo/ArticleItemInfo';
 
 const ArticleItem: FC = () => {
   const { id } = useParams();
