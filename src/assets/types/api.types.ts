@@ -13,9 +13,9 @@ export interface ArticleItemAPI {
   image: string;
   link: string;
   text: string;
-  author?: string;
   category: Category;
   source: Source;
+  author?: string;
 }
 
 export interface RelatedArticlesAPI {
@@ -25,6 +25,7 @@ export interface RelatedArticlesAPI {
 export interface Source {
   id: number;
   name: string;
+  site?: string;
 }
 
 export interface Category {
@@ -41,4 +42,17 @@ export interface Article {
   image: string;
   source_id: number;
   category_id: number;
+}
+
+export interface IPartnerArticle {
+  id: string;
+  'company-name': string;
+  title: string;
+  description: string;
+  text: string;
+  image: string;
+  created: {
+    nanoseconds: number;
+    seconds: number;
+  };
 }

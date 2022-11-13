@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
+import './Articles.css';
+import { useParams } from 'react-router-dom';
+import { PartnerArticle } from '../PartnerArticle/PartnerArticle';
+import { categoryIds } from '../../assets/utils/utils';
 import SmallArticle from '../SmallArticle/SmallArticle';
 import { NewsAPI } from '../../assets/types/api.types';
 import MainArticle from '../MainArticle/MainArticle';
 
-import './Articles.css';
-import { categoryIds } from '../../assets/utils/utils';
-import { useParams } from 'react-router-dom';
-
-const Articles: FC = () => {
+export const Articles: FC = () => {
   const { categoryId = 'index' }: { categoryId?: string } = useParams();
   const [articles, setArticles] = React.useState<NewsAPI>({
     items: [],
@@ -59,8 +59,10 @@ const Articles: FC = () => {
           })}
         </section>
       </div>
+
+      <div className="articles__partner-article">
+        <PartnerArticle />
+      </div>
     </section>
   );
 };
-
-export default Articles;

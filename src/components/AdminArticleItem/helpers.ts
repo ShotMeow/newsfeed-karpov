@@ -27,20 +27,6 @@ export const getErrors = async (data: [InputName, FormDataEntryValue][]): Promis
   };
 
   for (const [name, value] of data) {
-    if (name === 'image' && value instanceof File) {
-      if (value.size === 0 || !value.type.startsWith('image/')) {
-        errors[name] = 'Добавьте изображение';
-        continue;
-      }
-
-      await getImage(value).then((image) => {
-        if (image.width < 200 || image.height < 200) {
-          errors[name] = 'Изображение должно быть минимум 200×200';
-        }
-      });
-      continue;
-    }
-
     if (typeof value === 'string') {
       if (value.length === 0) {
         errors[name] = 'Поле не может быть пустым';

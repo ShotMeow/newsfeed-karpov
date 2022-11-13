@@ -9,3 +9,7 @@
 .articles__small-column {
   grid-column: 10/-1;
 }
+
+.articles__partner-article {
+  margin: 50px 0;
+}

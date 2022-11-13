@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import ArticleItem from '../ArticleItem/ArticleItem';
-import Articles from '../Articles/Articles';
+import { Articles } from '../Articles/Articles';
 
 import { Route, Routes, useLocation } from 'react-router-dom';
 import AdminPage from '../AdminPage/AdminPage';
-import AdminArticles from '../AdminArticles/AdminArticles';
-import AdminArticleItem from '../AdminArticleItem/AdminArticleItem';
+import { AdminArticles } from '../AdminArticles/AdminArticles';
+import { AdminArticleItem } from '../AdminArticleItem/AdminArticleItem';
 import Page from '../Page/Page';
 
 const App: FC = () => {
