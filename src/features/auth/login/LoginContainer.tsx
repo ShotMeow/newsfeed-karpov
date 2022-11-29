@@ -11,7 +11,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import './LoginContainer.css';
 import { validateEmail } from './utils';
 import { ALLOWED_OAUTH_PROVIDERS, useAuthContext } from '../AuthContextProvider';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ProviderId } from 'firebase/auth';
 import { TLoginWithEmailAndPasswordResult } from '../types';
 
@@ -51,7 +51,9 @@ const getOAuthProviderIcon = (provider: string) => {
 };
 
 export const LoginContainer: FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const { state: locationState } = useLocation<{ from: string }>();
   const { loginWithEmailAndPassword, loginWithOauthPopup } = useAuthContext();
   const [authError, setAuthError] = useState('');
@@ -68,7 +70,7 @@ export const LoginContainer: FC = () => {
   const processLogin = (loginPromise: Promise<TLoginWithEmailAndPasswordResult>) => {
     return loginPromise
       .then(() => {
-        history.push(locationState?.from || '/admin');
+        navigate(locationState?.from || '/admin');
       })
       .catch((error) => {
         setAuthError(error?.message || 'error');
