@@ -12,6 +12,13 @@
   --foreground-primary: var(--color-primary);
 }
 
+html,
+body,
+#root,
+.wrapper {
+  height: 100vh;
+}
+
 *:not(svg *) {
   all: unset;
   display: revert;

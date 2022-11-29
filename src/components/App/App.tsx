@@ -21,7 +21,7 @@ export const App: FC = () => {
   return (
     <Routes>
       <Route
-        path="/login"
+        path="/sign-in"
         element={
           <Page>
             <LoginContainer />
