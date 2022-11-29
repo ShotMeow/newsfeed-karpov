@@ -6,8 +6,8 @@
 }
 
 .article-card:hover {
-  color: var(--color-accent);
-  border-left-color: var(--color-accent);
+  color: var(--constant-accent);
+  border-left-color: var(--constant-accent);
 }
 
 .article-card__image {
@@ -49,17 +49,17 @@
   display: flex;
   align-items: baseline;
   margin-top: auto;
-  color: var(--color-primary);
+  color: var(--constant-black);
 }
 
 .article-card__category {
-  color: var(--color-accent);
+  color: var(--constant-accent);
   font-weight: 700;
   margin-right: 8px;
 }
 
 .article-card__date {
-  color: var(--color-grey2);
+  color: var(--constant-grey);
 }
 
 .article-card__date:not(:last-child)::after {

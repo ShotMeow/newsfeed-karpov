@@ -13,7 +13,7 @@
   justify-content: flex-end;
   align-items: flex-start;
   height: 488px;
-  background: var(--color-grey2) no-repeat center/cover;
+  background: var(--constant-grey) no-repeat center/cover;
 }
 
 .hero--no-image .hero__in {
@@ -33,8 +33,8 @@
 
 .hero__content {
   padding: 28px;
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: var(--constant-black);
+  color: var(--constant-white);
   max-width: calc(var(--grid-column-width) * 10 + var(--grid-gap) * 9);
 }
 
