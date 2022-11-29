@@ -1,0 +1,10 @@
+.logo {
+  display: block;
+  width: 154px;
+  cursor: pointer;
+}
+
+.logo__image {
+  width: 100%;
+  display: block;
+}

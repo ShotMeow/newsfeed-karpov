@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { FirebaseApp, initializeApp } from 'firebase/app';
 import {
   collection,
   getDocs,
@@ -14,9 +14,12 @@ import {
 } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { IPartnerArticle } from './assets/types/api.types';
+import { getAuth } from 'firebase/auth';
+
+export let firebaseApp: FirebaseApp;
 
 export const initializeAPI = () => {
-  initializeApp({
+  firebaseApp = initializeApp({
     apiKey: 'AIzaSyAD31X3aRpEKhcIDmjGrt7xCOlsrBESdtw',
     authDomain: 'newsfeed-446ff.firebaseapp.com',
     projectId: 'newsfeed-446ff',
@@ -25,7 +28,10 @@ export const initializeAPI = () => {
     appId: '1:520036578986:web:7fd0d004da9157b5b8c2d3',
   });
 
-  getFirestore();
+  getAuth(firebaseApp);
+  getFirestore(firebaseApp);
+  getStorage(firebaseApp);
+  return firebaseApp;
 };
 
 const partnersPostsCollection = 'partners-posts';

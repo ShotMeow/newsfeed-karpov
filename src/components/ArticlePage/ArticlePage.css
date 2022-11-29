@@ -1,0 +1,49 @@
+.article-page__hero {
+  margin-bottom: 36px;
+}
+
+.article-page__info {
+  display: flex;
+  font-weight: 500;
+  gap: 32px;
+  margin-bottom: 20px;
+}
+
+.article-page__content {
+  grid-column: span 8;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.article-page__sidebar {
+  grid-column: 9/-1;
+}
+
+.article-page__sidebar-item:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.article-page__content > :first-child {
+  margin-top: 0;
+}
+
+.article-page__content p {
+  margin-top: 26px;
+}
+
+.article-page__content img {
+  margin-top: 40px;
+  max-width: 100%;
+}
+
+.article-page__related-articles {
+  margin-top: 64px;
+}
+
+.article-page__related-articles-title {
+  margin-bottom: 36px;
+}
+
+.article-page__related-articles-item {
+  grid-column: span 4;
+}

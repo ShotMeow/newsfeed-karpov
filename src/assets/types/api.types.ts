@@ -28,9 +28,11 @@ export interface Source {
   site?: string;
 }
 
+export type CategoryNames = 'politics' | 'sport' | 'tech' | 'karpov.courses' | 'fashion' | 'other';
+
 export interface Category {
   id: number;
-  name: string;
+  name: CategoryNames;
 }
 
 export interface Article {

@@ -6,14 +6,17 @@ import './assets/styles/global.css';
 
 import { initializeAPI } from './api';
 
-import App from './components/App/App';
 import { BrowserRouter } from 'react-router-dom';
+import { App } from './components/App/App';
+import { AuthContextProvider } from './features/auth/AuthContextProvider';
 
-initializeAPI();
+const firebaseApp = initializeAPI();
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <AuthContextProvider firebaseApp={firebaseApp}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </AuthContextProvider>
 );

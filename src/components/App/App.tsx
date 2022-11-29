@@ -1,59 +1,76 @@
-import React, { FC } from 'react';
-import ArticleItem from '../ArticleItem/ArticleItem';
-import { Articles } from '../Articles/Articles';
+import React, { FC, useEffect } from 'react';
+import { Route, useLocation, Routes } from 'react-router-dom';
 
-import { Route, Routes, useLocation } from 'react-router-dom';
-import AdminPage from '../AdminPage/AdminPage';
+import { HomePage } from '../HomePage/HomePage';
+import { CategoryPage } from '../CategoryPage/CategoryPage';
+import { ArticlePage } from '../ArticlePage/ArticlePage';
+import { Page } from '../Page/Page';
+import { AdminPage } from '../AdminPage/AdminPage';
 import { AdminArticles } from '../AdminArticles/AdminArticles';
 import { AdminArticleItem } from '../AdminArticleItem/AdminArticleItem';
-import Page from '../Page/Page';
+import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
+import { LoginContainer } from '../../features/auth/login/LoginContainer';
 
-const App: FC = () => {
+export const App: FC = () => {
   const { pathname } = useLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
   return (
     <Routes>
       <Route
+        path="/login"
+        element={
+          <Page>
+            <LoginContainer />
+          </Page>
+        }
+      />
+      <Route
         path="/admin"
         element={
-          <AdminPage>
-            <AdminArticles />
-          </AdminPage>
+          <PrivateRoute>
+            <AdminPage>
+              <AdminArticles />
+            </AdminPage>
+          </PrivateRoute>
         }
       />
       <Route
         path="/admin/create"
         element={
-          <AdminPage>
-            <AdminArticleItem />
-          </AdminPage>
+          <PrivateRoute>
+            <AdminPage>
+              <AdminArticleItem />
+            </AdminPage>
+          </PrivateRoute>
         }
       />
       <Route
         path="/admin/edit/:id"
         element={
-          <AdminPage>
-            <AdminArticleItem />
-          </AdminPage>
+          <PrivateRoute>
+            <AdminPage>
+              <AdminArticleItem />
+            </AdminPage>
+          </PrivateRoute>
         }
       />
       <Route
         path="/article/:id"
         element={
           <Page>
-            <ArticleItem />
+            <ArticlePage />
           </Page>
         }
       />
       <Route
-        path="/:categoryId"
+        path="/:category"
         element={
           <Page>
-            <Articles />
+            <CategoryPage />
           </Page>
         }
       />
@@ -61,12 +78,10 @@ const App: FC = () => {
         path="/"
         element={
           <Page>
-            <Articles />
+            <HomePage />
           </Page>
         }
       />
     </Routes>
   );
 };
-
-export default App;

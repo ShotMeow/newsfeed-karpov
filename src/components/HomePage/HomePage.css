@@ -1,0 +1,39 @@
+.home-page__hero-link {
+  display: block;
+  cursor: pointer;
+  margin-bottom: 64px;
+}
+
+.home-page__content {
+  grid-column: span 7;
+}
+
+.home-page__sidebar {
+  grid-column: 9/-1;
+}
+
+.home-page__article-card:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.home-page__sidebar-item:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.home-page__trends-item {
+  grid-column: span 4;
+}
+
+.home-page__title {
+  margin-bottom: 32px;
+}
+
+.home-page__section {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.home-page__promo {
+  height: 300px;
+  background: var(--color-primary);
+}

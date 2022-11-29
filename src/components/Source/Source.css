@@ -1,0 +1,7 @@
+.source {
+  color: var(--color-grey2);
+}
+
+.source--link {
+  cursor: pointer;
+}

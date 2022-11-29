@@ -1,37 +1,40 @@
 import React, { FC } from 'react';
-import logo from '../../assets/images/logo.svg';
-
-import './Navigation.css';
-import { categoryNames } from '../../assets/utils/utils';
 import { NavLink } from 'react-router-dom';
+import './Navigation.css';
+import classNames from 'classnames';
+import { categoryTitles } from '../../assets/utils/utils';
 
 interface Props {
   className?: string;
-  placement: 'header' | 'footer';
 }
 
-const Navigation: FC<Props> = ({ className = '', placement = 'header' }) => {
+interface NavigationItemProps {
+  title?: string;
+  name?: string;
+}
+
+const NavigationItem: FC<NavigationItemProps> = ({ title, name = '' }) => {
   return (
-    <nav className={`grid navigation navigation--${placement} ${className}`}>
-      <NavLink to="/" className="navigation__logo">
-        <img className="navigation__logo-image" src={logo} alt="Логотип" />
+    <li className="navigation__item" key={name}>
+      <NavLink
+        to={`/${name}`}
+        className={({ isActive }) => 'navigation__link' + (isActive ? ' navigation__link--active' : '')}
+      >
+        {title}
       </NavLink>
+    </li>
+  );
+};
+
+export const Navigation: FC<Props> = ({ className = '' }) => {
+  return (
+    <nav className={classNames('navigation', className)}>
       <ul className="navigation__list">
-        {['index', 'fashion', 'technologies', 'sport', 'karpov'].map((item) => {
-          return (
-            <li className="navigation__item" key={item}>
-              <NavLink
-                to={`/${item}`}
-                className={({ isActive }) => 'navigation__link' + (isActive ? ' navigation__link--active' : '')}
-              >
-                {categoryNames[item]}
-              </NavLink>
-            </li>
-          );
+        <NavigationItem title="Новости" />
+        {Object.entries(categoryTitles).map(([name, title]) => {
+          return <NavigationItem key={name} name={name} title={title} />;
         })}
       </ul>
     </nav>
   );
 };
-
-export default Navigation;
