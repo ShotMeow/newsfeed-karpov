@@ -59,7 +59,7 @@
 }
 
 .article-card__date {
-  color: var(--constant-grey);
+  color: var(--constant-grey2);
 }
 
 .article-card__date:not(:last-child)::after {

@@ -1,0 +1,54 @@
+.email-modal {
+  width: 522px;
+  background: var(--constant-black);
+  color: var(--constant-white);
+  padding: 16px 28px 28px;
+  position: relative;
+}
+
+.email-modal__title {
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.email-modal__link {
+  cursor: pointer;
+  color: var(--constant-accent);
+}
+
+.email-modal__text {
+  font-size: 16px;
+  line-height: 25px;
+  margin-bottom: 24px;
+}
+
+.email-modal__form {
+  display: flex;
+}
+
+.email-modal__input {
+  padding: 8px 16px;
+  font-size: 16px;
+  line-height: 24px;
+  background: var(--constant-white);
+  color: var(--constant-black);
+  border-radius: 4px;
+  margin-right: 16px;
+}
+
+.email-modal__input::placeholder {
+  color: var(--constant-grey2);
+}
+
+.email-modal__input:focus {
+  box-shadow: 0 0 0 1px var(--constant-accent);
+}
+
+.email-modal__close {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  cursor: pointer;
+}

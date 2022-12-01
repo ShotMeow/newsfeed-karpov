@@ -1,0 +1,46 @@
+.button {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px 20px;
+  cursor: pointer;
+  background: var(--constant-accent);
+  color: var(--constant-white);
+  border-radius: 4px;
+  position: relative;
+}
+
+.button:hover {
+  background: #004e96;
+}
+
+.button:active {
+  background: #003463;
+}
+
+.button__loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: inherit;
+  border-radius: inherit;
+}
+
+.button__spinner {
+  animation: button-spinner 0.5s linear infinite;
+}
+
+@keyframes button-spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

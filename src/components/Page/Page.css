@@ -1,3 +1,7 @@
+.header {
+  background: var(--background-primary);
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;

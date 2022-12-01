@@ -8,7 +8,6 @@
       "es2017",
       "dom.iterable"
     ]
-
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

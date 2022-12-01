@@ -1,7 +1,9 @@
 :root {
+  --constant-overlay-black-alpha64: rgb(0 0 0 / 64%);
   --constant-black: #262a2f;
   --constant-accent: #0083fc;
-  --constant-grey: #a3a3a3;
+  --constant-grey1: #ebebeb;
+  --constant-grey2: #a3a3a3;
   --constant-white: #fff;
   --container-width: 940px;
   --container-padding: 20px;
@@ -10,12 +12,16 @@
   --background-zero: var(--constant-white);
   --background-primary: var(--constant-white);
   --foreground-primary: var(--constant-black);
+  --color-scheme-switcher-border: var(--constant-grey1);
+
+  color-scheme: light;
 }
 
 [scheme="dark"] {
   --background-zero: #131517;
   --background-primary: var(--constant-black);
   --foreground-primary: var(--constant-white);
+  --color-scheme-switcher-border: transparent;
 
   color-scheme: dark;
 }

@@ -15,10 +15,11 @@ interface NavigationItemProps {
 
 const NavigationItem: FC<NavigationItemProps> = ({ title, name = '' }) => {
   return (
-    <li className="navigation__item">
+    <li className="navigation__item" key={name}>
       <NavLink
         to={`/${name}`}
         className={({ isActive }) => 'navigation__link' + (isActive ? ' navigation__link--active' : '')}
+        end
       >
         {title}
       </NavLink>

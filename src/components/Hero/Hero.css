@@ -13,7 +13,7 @@
   justify-content: flex-end;
   align-items: flex-start;
   height: 488px;
-  background: var(--constant-grey) no-repeat center/cover;
+  background: var(--constant-grey2) no-repeat center/cover;
 }
 
 .hero--no-image .hero__in {
