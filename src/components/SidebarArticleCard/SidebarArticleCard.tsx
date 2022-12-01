@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './SidebarArticleCard.css';
-import { beautifyDate } from '../../../../../../../Workspace/newsfeed/src/utils';
 import classNames from 'classnames';
+import { beautifyDate } from '../../assets/utils/utils';
 
 interface Props {
   id: number;

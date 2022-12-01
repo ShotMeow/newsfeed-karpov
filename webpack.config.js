@@ -5,7 +5,7 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlInlineScriptWebpackPlugin = require('html-inline-script-webpack-plugin');
 
-const mode = process.env.NODE_ENV || 'production';
+const mode = process.env.NODE_ENV ? 'development' : 'production';
 
 module.exports = {
   entry: {

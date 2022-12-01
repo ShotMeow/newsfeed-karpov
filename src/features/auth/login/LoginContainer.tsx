@@ -1,8 +1,4 @@
-import {
-  LoginForm,
-  TLoginField,
-} from '@components/../../../../../../Users/ShotMeow/WebstormProjects/newsfeed/src/components/LoginForm/LoginForm';
-import React, { FC, Reducer, useReducer, useState } from 'react';
+import React, { ChangeEvent, FC, Reducer, useReducer, useState } from 'react';
 import { Divider, Link, Typography } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -14,6 +10,7 @@ import { ALLOWED_OAUTH_PROVIDERS, useAuthContext } from '../AuthContextProvider'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ProviderId } from 'firebase/auth';
 import { TLoginWithEmailAndPasswordResult } from '../types';
+import { LoginForm, TLoginField } from '../../../components/LoginForm/LoginForm';
 
 type TLoginFormFieldState = Omit<TLoginField, 'onChange'>;
 
@@ -119,11 +116,13 @@ export const LoginContainer: FC = () => {
       <LoginForm
         email={{
           ...emailState,
-          onChange: (e) => dispatchEmail({ type: 'change', value: e.target.value }),
+          onChange: (event: ChangeEvent<HTMLInputElement>) =>
+            dispatchEmail({ type: 'change', value: event.target.value }),
         }}
         password={{
           ...passwordState,
-          onChange: (e) => dispatchPassword({ type: 'change', value: e.target.value }),
+          onChange: (event: ChangeEvent<HTMLInputElement>) =>
+            dispatchPassword({ type: 'change', value: event.target.value }),
         }}
         onSubmit={onSubmit}
       />
