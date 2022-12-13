@@ -11,7 +11,7 @@ export const Button: FC<ButtonProps> = ({ children, loading = false, onClick, ..
       {children}
       {loading && (
         <span className="button__loading">
-          <img className="button__spinner" src={require('../../assets/images/spinner.svg')} alt="Спиннер" />
+          <img className="button__spinner" src={require('@images/spinner.svg')} alt="Спиннер" />
         </span>
       )}
     </button>

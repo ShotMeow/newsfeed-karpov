@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './SidebarArticleCard.css';
 import classNames from 'classnames';
-import { beautifyDate } from '../../assets/utils/utils';
+import { beautifyDate } from '@app/utils';
 
 interface Props {
   id: number;

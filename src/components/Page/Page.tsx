@@ -2,8 +2,8 @@ import React, { FC, PropsWithChildren, useState } from 'react';
 import './Page.css';
 import { Navigation } from '../Navigation/Navigation';
 import { Logo } from '../Logo/Logo';
-import { ColorSchemeSwitcher } from '../ColorSchemeSwitcher/ColorSchemeSwitcher';
-import { EmailModal } from '../EmailModal/EmailModal';
+import { ColorSchemeSwitcher } from '@features/colorScheme/components/ColorSchemeSwitcher/ColorSchemeSwitcher';
+import { EmailModal } from '@features/subscribeNotification/components/EmailModal/EmailModal';
 
 const LS_EMAIL_SHOWN_KEY = 'newsfeed:email_modal_shown';
 

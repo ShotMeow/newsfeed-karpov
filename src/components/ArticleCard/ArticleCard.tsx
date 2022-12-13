@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './ArticleCard.css';
-import { Source } from '../Source/Source';
 import classNames from 'classnames';
-import { beautifyDate, categoryTitles } from '../../assets/utils/utils';
-import { CategoryNames } from '../../assets/types/api.types';
+import { categoryTitles } from '@features/categories/constants';
+import { CategoryNames } from '@features/categories/types';
+import { beautifyDate } from '@app/utils';
+import { Source } from '@features/sources/components/Source/Source';
 
 interface Props {
   id: number;
