@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './SidebarArticleCard.css';
 import classNames from 'classnames';
 import { beautifyDate } from '@app/utils';
+import Image from '@components/Image/Image';
 
 interface Props {
   id: number;
@@ -17,7 +18,7 @@ export const SidebarArticleCard: FC<Props> = ({ id, title, source, date, image, 
   return (
     <Link to={`/article/${id}`} className={classNames('sidebar-article-card', className)}>
       <div className="sidebar-article-card__media">
-        <img className="sidebar-article-card__image" src={image} alt="" />
+        <Image className="sidebar-article-card__image" src={image} alt="" />
         <div className="sidebar-article-card__date">{beautifyDate(date)}</div>
       </div>
       <h3 className="sidebar-article-card__title">{title}</h3>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './CategoryPage.css';
@@ -12,6 +12,10 @@ import { fetchCategoryArticles } from '@features/categoryArticles/actions';
 import { getCategoryNews } from '@features/categoryArticles/selectors';
 import { getCategories } from '@features/categories/selectors';
 import { getSources } from '@features/sources/selectors';
+import { repeat } from '@app/utils';
+import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton';
+import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton';
+import { HeroSkeleton } from '@components/Hero/HeroSkeleton';
 
 export const CategoryPage: FC = () => {
   // @ts-ignore
@@ -20,14 +24,42 @@ export const CategoryPage: FC = () => {
   const articles = useSelector(getCategoryNews(categoryIds[category]));
   const categories = useSelector(getCategories);
   const sources = useSelector(getSources);
+  const [loading, setLoading] = useState(true);
 
   React.useEffect(() => {
-    dispatch(fetchCategoryArticles(categoryIds[category]));
+    setLoading(true);
+    dispatch(fetchCategoryArticles(categoryIds[category])).then(() => {
+      setLoading(false);
+    });
   }, [category]);
+
+  if (loading) {
+    return (
+      <section className="category-page">
+        <HeroSkeleton title={categoryTitles[category]} className="category-page__hero" />
+        <div className="container grid">
+          <section className="category-page__content">
+            {repeat((i) => {
+              return <ArticleCardSkeleton key={i} className="category-page__item" />;
+            }, 6)}
+          </section>
+          <section className="category-page__sidebar">
+            {repeat((i) => {
+              return <SidebarArticleCardSkeleton key={i} className="category-page__sidebar-item" />;
+            }, 3)}
+          </section>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="category-page">
-      <Hero title={categoryTitles[category]} image="test" className="category-page__hero" />
+      <Hero
+        title={categoryTitles[category]}
+        image={require(`@images/categories/${category}.jpg`)}
+        className="category-page__hero"
+      />
       <div className="container grid">
         <section className="category-page__content">
           {articles.slice(3).map((item) => {

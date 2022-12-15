@@ -42,7 +42,8 @@ export const ColorSchemeSwitcher: FC = () => {
       <button
         className="color-scheme-switcher__value"
         ref={targetRef}
-        onClick={() => {
+        onClick={(event) => {
+          event.stopPropagation();
           setDropdownShown(!dropdownShown);
         }}
       >

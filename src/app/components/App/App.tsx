@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AdminArticleItem } from '@features/admin/components/AdminArticleItem/AdminArticleItem';
 import { AdminPage } from '@features/admin/components/AdminPage/AdminPage';
@@ -12,9 +12,13 @@ import { PrivateRoute } from '@components/PrivateRoute/PrivateRoute';
 
 export const App: FC = () => {
   const { pathname } = useLocation();
+  const prevPathName = useRef(pathname);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (pathname !== prevPathName.current) {
+      prevPathName.current = pathname;
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return (
