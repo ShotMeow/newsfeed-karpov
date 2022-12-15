@@ -14,7 +14,6 @@ import { getRelatedArticles } from '@features/relatedNews/selectors';
 import { getSources } from '@features/sources/selectors';
 import { fetchArticleItem } from '@features/articleItem/actions';
 import { fetchRelatedArticles } from '@features/relatedNews/actions';
-import { setArticleItem } from '@features/articleItem/slice';
 
 export const ArticlePage: FC = () => {
   const { id }: { id?: string } = useParams();
@@ -24,14 +23,8 @@ export const ArticlePage: FC = () => {
   const sources = useSelector(getSources);
 
   React.useEffect(() => {
-    // @ts-ignore
     dispatch(fetchArticleItem(Number(id)));
-    // @ts-ignore
     dispatch(fetchRelatedArticles(Number(id)));
-
-    return () => {
-      dispatch(setArticleItem(null));
-    };
   }, [id]);
 
   if (articleItem === null) {

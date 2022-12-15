@@ -17,12 +17,13 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  overflow: hidden;
 }
 
 .sidebar-article-card__date {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 10px;
   background: var(--background-zero);
   padding: 6px 12px;
   font-weight: 500;
