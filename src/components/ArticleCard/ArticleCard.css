@@ -1,5 +1,6 @@
 .article-card {
   display: flex;
+  flex-direction: column;
   border-left: 4px solid var(--foreground-primary);
   padding-left: 12px;
 }
@@ -10,9 +11,9 @@
 }
 
 .article-card__image {
-  width: 152px;
-  height: 112px;
-  margin-right: 12px;
+  width: 99px;
+  height: 72px;
+  margin-bottom: 12px;
   flex-shrink: 0;
 }
 
@@ -70,4 +71,17 @@
 .article-card--skeleton,
 .article-card--skeleton:hover {
   border-color: var(--skeleton-color);
+}
+
+@media all and (min-width: 1024px) {
+  .article-card {
+    flex-direction: row;
+  }
+
+  .article-card__image {
+    width: 152px;
+    height: 112px;
+    margin-right: 12px;
+    margin-bottom: 0;
+  }
 }

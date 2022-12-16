@@ -1,0 +1,131 @@
+.header {
+  background: var(--background-primary);
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 76px;
+}
+
+.header__navigation {
+  margin-left: 24px;
+}
+
+.header__controls {
+  margin-left: auto;
+}
+
+.header__mobile-container {
+  padding: 8px var(--container-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__mobile-button {
+  padding: 6px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--mobile-menu-button);
+}
+
+.header__mobile-controls {
+  padding: 10px var(--container-padding);
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--constant-black-alpha4);
+}
+
+.header__mobile-controls--hasMenu {
+  padding: 0;
+}
+
+.header__mobile-back-button {
+  padding: var(--container-padding);
+  width: 100%;
+  font-weight: 900;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.header__mobile-back-button:hover {
+  color: var(--constant-accent);
+}
+
+.header__mobile-navigation .navigation__list {
+  display: block;
+}
+
+.header__mobile-navigation .navigation__item {
+  margin: 0;
+}
+
+.header__mobile-navigation .navigation__link {
+  display: block;
+  padding: var(--container-padding);
+}
+
+.header__mobile-overlay {
+  position: fixed;
+  top: 52px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.header__mobile-backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--constant-black-alpha64);
+}
+
+.header__mobile-menu {
+  position: relative;
+  background-color: var(--background-primary);
+  overflow: hidden;
+}
+
+.header-mobile-menu-animation-enter .header__mobile-menu {
+  max-height: 0;
+  transition: max-height 0.3s;
+}
+
+.header-mobile-menu-animation-enter-active .header__mobile-menu {
+  max-height: 100vh;
+}
+
+.header-mobile-menu-animation-exit .header__mobile-menu {
+  max-height: 100vh;
+  transition: max-height 0.3s;
+}
+
+.header-mobile-menu-animation-exit-active .header__mobile-menu {
+  max-height: 0;
+}
+
+.header-mobile-menu-animation-enter .header__mobile-backdrop {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.header-mobile-menu-animation-enter-active .header__mobile-backdrop {
+  opacity: 1;
+}
+
+.header-mobile-menu-animation-exit .header__mobile-backdrop {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.header-mobile-menu-animation-exit-active .header__mobile-backdrop {
+  opacity: 0;
+}

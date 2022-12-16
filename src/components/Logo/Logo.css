@@ -1,9 +1,16 @@
 .logo {
   display: block;
-  width: 154px;
+  width: 112px;
 }
 
 .logo__image {
   width: 100%;
   display: block;
+}
+
+@media all and (min-width: 1024px) {
+  .logo {
+    width: 154px;
+    flex-shrink: 0;
+  }
 }

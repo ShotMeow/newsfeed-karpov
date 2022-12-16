@@ -1,0 +1,25 @@
+.color-scheme-switcher-menu__option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--foreground-primary);
+  cursor: pointer;
+  width: 100%;
+  padding: 14px var(--container-padding);
+  box-sizing: border-box;
+}
+
+.color-scheme-switcher-menu__text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin-left: 12px;
+}
+
+.color-scheme-switcher-menu__option:hover .color-scheme-switcher-menu__text {
+  color: var(--constant-accent);
+}
+
+.color-scheme-switcher-menu__check {
+  margin-left: auto;
+}

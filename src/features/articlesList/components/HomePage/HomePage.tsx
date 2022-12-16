@@ -19,6 +19,7 @@ import { repeat } from '@app/utils';
 import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton';
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton';
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton';
+import { useAdaptive } from '@app/hooks';
 
 export const HomePage: FC = () => {
   const dispatch = useDispatch<Dispatch>();
@@ -28,6 +29,7 @@ export const HomePage: FC = () => {
   const categories = useSelector(getCategories);
   const sources = useSelector(getSources);
   const [loading, setLoading] = useState(true);
+  const { isDesktop, isMobile } = useAdaptive();
 
   React.useEffect(() => {
     setLoading(true);
@@ -85,6 +87,7 @@ export const HomePage: FC = () => {
   }
 
   const firstArticle = articles[0];
+  const mainArticles = isMobile ? articles.slice(1) : articles.slice(4);
 
   return (
     <div className="home-page">
@@ -103,8 +106,10 @@ export const HomePage: FC = () => {
           В тренде
         </Title>
         <div className="grid">
-          {trendArticles.map(({ id, title, category_id, date }) => {
+          {trendArticles.map(({ id, title, category_id, source_id, date }) => {
             const category = categories[category_id];
+            const source = sources.find(({ id }) => source_id === id);
+
             return (
               <ArticleCard
                 className="home-page__trends-item"
@@ -112,6 +117,7 @@ export const HomePage: FC = () => {
                 title={title}
                 key={id}
                 category={category?.name}
+                source={source?.name}
                 date={date}
               />
             );
@@ -161,7 +167,9 @@ export const HomePage: FC = () => {
       </div>
       <section className="container grid home-page__section">
         <section className="home-page__content">
-          {articles.slice(4).map((item) => {
+          {mainArticles.map((item) => {
+            const source = sources.find(({ id }) => item.source_id === id);
+
             return (
               <ArticleCard
                 className="home-page__article-card"
@@ -169,28 +177,32 @@ export const HomePage: FC = () => {
                 id={item.id}
                 title={item.title}
                 description={item.description}
-                source={sources[item.source_id]?.name}
+                source={source?.name}
                 date={item.date}
                 image={item.image}
               />
             );
           })}
         </section>
-        <section className="home-page__sidebar">
-          {articles.slice(1, 4).map((item) => {
-            return (
-              <SidebarArticleCard
-                className="home-page__sidebar-item"
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                source={sources[item.source_id]?.name}
-                date={item.date}
-                image={item.image}
-              />
-            );
-          })}
-        </section>
+        {isDesktop && (
+          <section className="home-page__sidebar">
+            {articles.slice(1, 4).map((item) => {
+              const source = sources.find(({ id }) => item.source_id === id);
+
+              return (
+                <SidebarArticleCard
+                  className="home-page__sidebar-item"
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  source={source?.name || ''}
+                  date={item.date}
+                  image={item.image}
+                />
+              );
+            })}
+          </section>
+        )}
       </section>
     </div>
   );

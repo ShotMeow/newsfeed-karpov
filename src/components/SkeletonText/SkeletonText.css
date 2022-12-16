@@ -1,4 +1,5 @@
 .skeleton-text {
+  display: block;
   color: var(--skeleton-color);
   width: 100%;
 }

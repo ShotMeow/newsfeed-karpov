@@ -1,0 +1,12 @@
+.color-scheme-switcher-button {
+  border-radius: 50%;
+  background: var(--background-zero);
+  border: 1px solid var(--color-scheme-switcher-border);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--constant-accent);
+}

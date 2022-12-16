@@ -11,7 +11,7 @@ interface Props {
 
 const SkeletonText: FC<Props> = ({ rowsCount = 1, dark = false }) => {
   return (
-    <div
+    <span
       className={classNames('skeleton-text', {
         'skeleton-text--dark': dark,
       })}
@@ -19,7 +19,7 @@ const SkeletonText: FC<Props> = ({ rowsCount = 1, dark = false }) => {
       {repeat((i) => {
         return <span key={i} className="skeleton-text__row skeleton-gradient" />;
       }, rowsCount)}
-    </div>
+    </span>
   );
 };
 

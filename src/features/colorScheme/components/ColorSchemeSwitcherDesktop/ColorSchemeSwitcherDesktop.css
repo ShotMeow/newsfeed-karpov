@@ -1,0 +1,8 @@
+.color-scheme-switcher__dropdown-menu {
+  width: 208px;
+}
+
+.color-scheme-switcher__dropdown-menu .color-scheme-switcher-menu__option {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}

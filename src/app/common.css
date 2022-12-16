@@ -2,6 +2,7 @@
 
 :root {
   --constant-black-alpha64: rgb(0 0 0 / 64%);
+  --constant-black-alpha4: rgb(0 0 0 / 4%);
   --constant-white-alpha12: rgb(255 255 255 / 12%);
   --constant-white-alpha64: rgb(255 255 255 / 64%);
   --constant-black: #262a2f;
@@ -10,15 +11,16 @@
   --constant-grey2: #a3a3a3;
   --constant-white: #fff;
   --container-width: 940px;
-  --container-padding: 20px;
+  --container-padding: 16px;
   --grid-column-width: 60px;
-  --grid-gap: 20px;
+  --grid-gap: 24px;
   --background-zero: var(--constant-white);
   --background-primary: var(--constant-white);
   --foreground-primary: var(--constant-black);
   --color-scheme-switcher-border: var(--constant-grey1);
   --skeleton-color: var(--constant-grey1);
   --skeleton-gradient: linear-gradient(to right, transparent 0%, var(--constant-white-alpha64) 100%);
+  --mobile-menu-button: #f2f2f2;
 
   color-scheme: light;
 }
@@ -30,6 +32,7 @@
   --color-scheme-switcher-border: transparent;
   --skeleton-color: var(--constant-white-alpha12);
   --skeleton-gradient: linear-gradient(to right, transparent 0%, var(--constant-white-alpha12) 100%);
+  --mobile-menu-button: var(--background-zero);
 
   color-scheme: dark;
 }
@@ -50,7 +53,6 @@ body {
   line-height: 20px;
   font-weight: 400;
   color: var(--foreground-primary);
-  min-width: calc(var(--container-width) + 2 * var(--container-padding));
 }
 
 a {
@@ -65,7 +67,6 @@ a {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(12, var(--grid-column-width));
   gap: var(--grid-gap);
 }
 
@@ -90,5 +91,20 @@ a {
 
   to {
     background-position: -100% 0;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  :root {
+    --container-padding: 20px;
+    --grid-gap: 20px;
+  }
+
+  body {
+    min-width: calc(var(--container-width) + 2 * var(--container-padding));
+  }
+
+  .grid {
+    grid-template-columns: repeat(12, var(--grid-column-width));
   }
 }

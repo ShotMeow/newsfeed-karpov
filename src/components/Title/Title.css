@@ -1,6 +1,13 @@
 .Title {
   font-weight: 900;
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 20px;
+  line-height: 24px;
   text-transform: uppercase;
+}
+
+@media all and (min-width: 1024px) {
+  .Title {
+    font-size: 36px;
+    line-height: 44px;
+  }
 }

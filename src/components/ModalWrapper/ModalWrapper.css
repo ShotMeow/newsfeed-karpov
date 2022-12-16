@@ -8,10 +8,22 @@
   display: flex;
 }
 
+.modal-wrapper__children {
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
 .modal-wrapper--alignY-center {
   align-items: center;
 }
 
 .modal-wrapper--alignX-center {
   justify-content: center;
+}
+
+@media all and (min-width: 1024px) {
+  .modal-wrapper__children {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

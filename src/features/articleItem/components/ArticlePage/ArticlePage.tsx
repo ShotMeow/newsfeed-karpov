@@ -17,6 +17,7 @@ import { fetchRelatedArticles } from '@features/relatedNews/actions';
 import SkeletonText from '@components/SkeletonText/SkeletonText';
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton';
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton';
+import { useAdaptive } from '@app/hooks';
 
 export const ArticlePage: FC = () => {
   const { id }: { id?: string } = useParams();
@@ -25,12 +26,15 @@ export const ArticlePage: FC = () => {
   const relatedArticles = useSelector(getRelatedArticles(Number(id)));
   const sources = useSelector(getSources);
   const [loading, setLoading] = useState(true);
+  const { isDesktop } = useAdaptive();
 
-  React.useEffect(() => {
-    setLoading(true);
-    Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))]).then(() => {
-      setLoading(false);
-    });
+  React.useLayoutEffect(() => {
+    if (!articleItem?.text) {
+      setLoading(true);
+      Promise.all([dispatch(fetchArticleItem(Number(id))), dispatch(fetchRelatedArticles(Number(id)))]).then(() => {
+        setLoading(false);
+      });
+    }
   }, [id]);
 
   if (loading) {
@@ -47,12 +51,13 @@ export const ArticlePage: FC = () => {
                 <SkeletonText rowsCount={6} />
               </p>
             </div>
-
-            <div className="article-page__sidebar">
-              {repeat((i) => {
-                return <SidebarArticleCardSkeleton key={i} className="article-page__sidebar-item" />;
-              }, 3)}
-            </div>
+            {isDesktop && (
+              <div className="article-page__sidebar">
+                {repeat((i) => {
+                  return <SidebarArticleCardSkeleton key={i} className="article-page__sidebar-item" />;
+                }, 3)}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -81,23 +86,25 @@ export const ArticlePage: FC = () => {
             <p>{articleItem.text}</p>
           </div>
 
-          <div className="article-page__sidebar">
-            {relatedArticles.slice(3, 9).map((item) => {
-              const source = sources.find(({ id }) => item.source_id === id);
+          {isDesktop && (
+            <div className="article-page__sidebar">
+              {relatedArticles.slice(3, 9).map((item) => {
+                const source = sources.find(({ id }) => item.source_id === id);
 
-              return (
-                <SidebarArticleCard
-                  className="article-page__sidebar-item"
-                  date={item.date}
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  source={source?.name || ''}
-                  image={item.image}
-                />
-              );
-            })}
-          </div>
+                return (
+                  <SidebarArticleCard
+                    className="article-page__sidebar-item"
+                    date={item.date}
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    source={source?.name || ''}
+                    image={item.image}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 
