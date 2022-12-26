@@ -22,8 +22,6 @@
   --skeleton-color: var(--constant-grey1);
   --skeleton-gradient: linear-gradient(to right, transparent 0%, var(--constant-white-alpha64) 100%);
   --mobile-menu-button: #f2f2f2;
-
-  color-scheme: light;
 }
 
 [scheme="dark"] {
@@ -34,8 +32,6 @@
   --skeleton-color: var(--constant-white-alpha12);
   --skeleton-gradient: linear-gradient(to right, transparent 0%, var(--constant-white-alpha12) 100%);
   --mobile-menu-button: var(--background-zero);
-
-  color-scheme: dark;
 }
 
 *:not(svg *) {

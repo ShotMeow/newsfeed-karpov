@@ -32,7 +32,7 @@ export const Dropdown: FC<DropdownProps> = ({
 
   useEffect(() => {
     setCoords(calcCoords(targetRef.current as HTMLElement));
-  }, []);
+  }, [shown]);
 
   useEffect(() => {
     onShownChange(shown);

@@ -1,6 +1,10 @@
 const LS_COLOR_SCHEME_KEY = 'newsfeed:scheme';
 
 export function applyScheme(scheme: 'dark' | 'light', persist = false): void {
+  (document.querySelector('meta[name="theme-color"]') as HTMLElement).setAttribute(
+    'content',
+    scheme === 'dark' ? '#262a2f' : '#fff'
+  );
   document.documentElement.setAttribute('scheme', scheme);
   persist && localStorage.setItem(LS_COLOR_SCHEME_KEY, scheme);
 }

@@ -1,0 +1,34 @@
+{
+  "name": "K/C News",
+  "short_name": "K/C",
+  "description": "K/C News: the honestest news",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0083fc",
+  "icons": [
+    {
+      "src": "../images/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "../images/icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "../images/icon_512_bordered.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../images/icon_192_bordered.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
