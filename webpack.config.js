@@ -8,16 +8,17 @@ const HtmlInlineScriptWebpackPlugin = require('html-inline-script-webpack-plugin
 const mode = process.env.NODE_ENV ? 'development' : 'production';
 
 module.exports = {
+  mode,
   entry: {
     main: './src/index.tsx',
     initColorScheme: './src/features/colorScheme/initColorScheme.ts',
+    sw: './src/features/serviceWorker/service.worker.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
     publicPath: '/',
   },
-  mode,
   module: {
     rules: [
       {
@@ -30,13 +31,21 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
+        test: /service\.worker\.ts$/i,
+        use: 'ts-loader',
+        type: 'asset/resource',
+        generator: {
+          filename: 'sw.js',
+        },
+      },
+      {
         test: /\.(svg|jpg)$/,
         type: 'asset/resource',
       },
       {
         test: /\.(ts|tsx)$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /worker\.ts$/],
       },
     ],
   },
@@ -55,6 +64,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/app/index.html',
+      excludeChunks: ['sw'],
     }),
     new HtmlInlineScriptWebpackPlugin([/initColorScheme\..+\.js$/]),
     new MiniCssExtractPlugin({
@@ -71,8 +81,8 @@ module.exports = {
     client: {
       overlay: false,
     },
-    open: true,
-    hot: true,
+    hot: false,
+    open: false,
     historyApiFallback: {
       disableDotRule: true,
     },

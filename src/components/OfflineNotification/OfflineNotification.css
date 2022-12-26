@@ -1,0 +1,20 @@
+.offline-notification {
+  background-color: var(--constant-red);
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: var(--constant-white);
+  text-align: center;
+}
+
+@media all and (min-width: 1024px) {
+  .offline-notification {
+    padding: 6px 16px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}

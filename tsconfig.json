@@ -6,7 +6,8 @@
     "lib": [
       "dom",
       "es2017",
-      "dom.iterable"
+      "dom.iterable",
+      "webworker"
     ],
     "baseUrl": "src",
     "paths": {
@@ -29,6 +30,7 @@
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/features/serviceWorker"
   ]
 }

@@ -1,0 +1,17 @@
+.offline-notification-animation-enter {
+  transition: transform ease-in 300ms;
+  transform: translateY(50px);
+}
+
+.offline-notification-animation-enter-active {
+  transform: translateY(0);
+}
+
+.offline-notification-animation-exit {
+  transition: transform ease-out 300ms;
+  transform: translateY(0);
+}
+
+.offline-notification-animation-exit-active {
+  transform: translateY(50px);
+}

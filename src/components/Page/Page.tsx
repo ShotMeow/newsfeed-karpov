@@ -4,6 +4,7 @@ import { Navigation } from '../Navigation/Navigation';
 import { Logo } from '../Logo/Logo';
 import { EmailModal } from '@features/subscribeNotification/components/EmailModal/EmailModal';
 import { Header } from '@components/Header/Header';
+import { OfflineNotificationWatcher } from '@features/networkStatus/OfflineNotificationWatcher/OfflineNotificationWatcher';
 
 const LS_EMAIL_SHOWN_KEY = 'newsfeed:email_modal_shown';
 
@@ -37,6 +38,7 @@ export const Page: FC<PropsWithChildren> = ({ children }) => {
           </div>
         </div>
       </footer>
+      <OfflineNotificationWatcher />
     </>
   );
 };
