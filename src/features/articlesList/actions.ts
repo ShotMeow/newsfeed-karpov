@@ -1,15 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiFetchNews, apiFetchTrends } from '@app/api';
-import { setNews, setTrends } from './slice';
+import { setNews, setTrends } from '@features/articlesList/slice';
 
-export const fetchNews = createAsyncThunk('api/fetchNews', (_, thunk) => {
-  return apiFetchNews().then((news) => {
+export const fetchNews = createAsyncThunk('api/fetchNews', (lang: string, thunk) => {
+  return apiFetchNews(lang).then((news) => {
     thunk.dispatch(setNews(news.items));
   });
 });
 
-export const fetchTrends = createAsyncThunk('api/fetchTrends', (_, thunk) => {
-  return apiFetchTrends().then((trends) => {
+export const fetchTrends = createAsyncThunk('api/fetchTrends', (lang: string, thunk) => {
+  return apiFetchTrends(lang).then((trends) => {
     thunk.dispatch(setTrends(trends.items));
   });
 });

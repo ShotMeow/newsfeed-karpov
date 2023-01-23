@@ -24,6 +24,24 @@
   color: var(--constant-accent);
 }
 
+.navigation--mobile .navigation__list {
+  display: block;
+}
+
+.navigation--mobile .navigation__item {
+  margin: 0;
+}
+
+.navigation--mobile .navigation__link {
+  display: block;
+  padding: var(--container-padding);
+}
+
+.navigation--mobile .navigation__link:focus-visible {
+  outline: none;
+  box-shadow: var(--inner-focus-border);
+}
+
 @media all and (min-width: 1024px) {
   .navigation__item {
     margin-right: 24px;

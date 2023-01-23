@@ -1,4 +1,5 @@
 import React, { ForwardedRef, forwardRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import './ColorSchemeSwitcherButton.css';
 import { Auto } from '@components/Icons/Auto';
 import { Moon } from '@components/Icons/Moon';
@@ -14,8 +15,15 @@ export const ColorSchemeSwitcherButton = forwardRef(function ColorSchemeSwitcher
   { onClick, scheme }: Props,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
+  const { t } = useTranslation();
+
   return (
-    <button aria-label="Переключить тему" className="color-scheme-switcher-button" ref={ref} onClick={onClick}>
+    <button
+      aria-label={t('color_scheme_button_change') || ''}
+      className="color-scheme-switcher-button"
+      ref={ref}
+      onClick={onClick}
+    >
       {scheme === 'auto' && <Auto />}
       {scheme === 'dark' && <Moon />}
       {scheme === 'light' && <Sun />}

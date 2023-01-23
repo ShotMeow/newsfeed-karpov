@@ -9,6 +9,7 @@ code_quality:
   stage: test
   before_script:
     - npm ci
+    - npm run locale:download
   script:
     - npm run eslint
     - npm run stylelint

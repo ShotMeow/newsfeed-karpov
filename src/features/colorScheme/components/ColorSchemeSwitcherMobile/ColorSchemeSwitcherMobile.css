@@ -1,3 +1,9 @@
 .color-scheme-switcher-mobile {
   width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.color-scheme-switcher-mobile--opened {
+  display: block;
 }

@@ -1,0 +1,8 @@
+.locale-switcher-mobile {
+  width: 100%;
+  display: flex;
+}
+
+.locale-switcher-mobile--opened {
+  display: block;
+}

@@ -1,5 +1,5 @@
-export const beautifyDate = (date: string): string => {
-  return new Date(date).toLocaleDateString('ru-RU', {
+export const beautifyDate = (date: string, lang: string): string => {
+  return new Date(date).toLocaleDateString(lang, {
     month: 'long',
     day: 'numeric',
   });

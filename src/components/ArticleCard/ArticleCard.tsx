@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import './ArticleCard.css';
 import { Source } from '@features/sources/components/Source/Source';
 import { beautifyDate } from '@app/utils';
-import { categoryTitles } from '@features/categories/constants';
 import { CategoryNames } from '@features/categories/types';
 import Image from '@components/Image/Image';
 
@@ -32,6 +32,8 @@ export const ArticleCard: FC<Props> = ({
   const hasDescription = description.length > 0;
   const hasImage = image.length > 0;
 
+  const { t, i18n } = useTranslation();
+
   return (
     <Link
       to={`/article/${id}`}
@@ -50,9 +52,9 @@ export const ArticleCard: FC<Props> = ({
           {hasDescription && <span className="article-card__description">{description}</span>}
           <div className="article-card__info">
             {category && category.length > 0 && (
-              <span className="article-card__category">{categoryTitles[category]}</span>
+              <span className="article-card__category">{t(`category_${category}`)}</span>
             )}
-            {date.length > 0 && <span className="article-card__date">{beautifyDate(date)}</span>}
+            {date.length > 0 && <span className="article-card__date">{beautifyDate(date, i18n.language)}</span>}
             {source.length > 0 && <Source>{source}</Source>}
           </div>
         </div>

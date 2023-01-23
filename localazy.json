@@ -1,0 +1,8 @@
+{
+  "readKey": "a8369076091539634270-f6af4a71ab9370f41ae8076231794eac4c9f7e6173a6bb54225a80d5ccb8869c",
+
+  "download": {
+    "files": "src/features/locale/translations/${lang}.json",
+    "includeSourceLang": true
+  }
+}

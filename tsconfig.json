@@ -23,7 +23,8 @@
       "@images/*": [
         "images/*"
       ]
-    }
+    },
+    "resolveJsonModule": true
   },
   "include": [
     "src"
