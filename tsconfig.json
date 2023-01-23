@@ -3,6 +3,8 @@
     "strict": true,
     "esModuleInterop": true,
     "jsx": "react",
+    "module": "ES2020",
+    "moduleResolution": "Node",
     "lib": [
       "dom",
       "es2017",

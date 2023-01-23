@@ -1,25 +1,8 @@
 import { FirebaseApp, initializeApp } from 'firebase/app';
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-  limit,
-  orderBy,
-  query,
-  updateDoc,
-} from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
-import { Category } from '@features/categories/types';
-import { NewsAPI } from '@features/articlesList/types';
-import { ArticleItemAPI } from '@features/articleItem/types';
 import { IPartnerArticle } from '@features/partnersArticles/types';
-import { RelatedArticlesAPI } from '@features/relatedNews/types';
-import { Source } from '@features/sources/types';
 
 export let firebaseApp: FirebaseApp;
 
@@ -129,57 +112,4 @@ export const uploadFile = async (file: File): Promise<string> => {
   } catch (error) {
     return Promise.reject(error);
   }
-};
-
-export const getMainPartnerArticle = async (): Promise<IPartnerArticle | null> => {
-  const db = getFirestore();
-  let article = null;
-
-  try {
-    const q = query(collection(db, partnersPostsCollection), orderBy('created', 'desc'), limit(1));
-    const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach((doc) => {
-      const data = doc.data() as Omit<IPartnerArticle, 'id'>;
-
-      article = {
-        id: doc.id,
-        ...data,
-      };
-    });
-  } catch (error) {
-    return Promise.reject(error);
-  }
-
-  return article;
-};
-
-export const apiFetchNews = (lang: string): Promise<NewsAPI> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/${lang}/news`).then((response) => response.json());
-};
-
-export const apiFetchTrends = (lang: string): Promise<NewsAPI> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/${lang}/trends`).then((response) => response.json());
-};
-
-export const apiFetchCategory = (lang: string, id: number): Promise<NewsAPI> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/${lang}/news/${id}`).then((response) => response.json());
-};
-
-export const apiFetchCategories = (): Promise<Category[]> => {
-  return fetch('https://frontend.karpovcourses.net/api/v2/categories').then((response) => response.json());
-};
-
-export const apiFetchSources = (): Promise<Source[]> => {
-  return fetch('https://frontend.karpovcourses.net/api/v2/sources').then((response) => response.json());
-};
-
-export const apiFetchRelatedArticles = (id: number): Promise<RelatedArticlesAPI> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then((response) =>
-    response.json()
-  );
-};
-
-export const apiFetchArticleItem = (id: number): Promise<ArticleItemAPI> => {
-  return fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`).then((response) => response.json());
 };

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { apiFetchNews, apiFetchTrends } from '@app/api';
+import { apiFetchNews, apiFetchTrends } from '@app/publicApi';
 import { setNews, setTrends } from '@features/articlesList/slice';
 
 export const fetchNews = createAsyncThunk('api/fetchNews', (lang: string, thunk) => {

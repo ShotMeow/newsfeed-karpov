@@ -16,7 +16,7 @@ export const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <>
-      isAuthenticated ? {children} : <Navigate to="/sign-in" />
+      isAuthenticated ? {children} : <Navigate to="/admin/sign-in" />
     </>
   );
 };

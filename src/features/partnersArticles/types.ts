@@ -10,3 +10,5 @@ export interface IPartnerArticle {
     seconds: number;
   };
 }
+
+export type IPartnerArticleREST = Record<keyof IPartnerArticle, { stringValue: string }>;

@@ -1,16 +1,16 @@
 import React, { useEffect, useState, FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import './PartnerArticle.css';
-import { getMainPartnerArticle } from '@app/api';
-import { IPartnerArticle } from '@features/partnersArticles/types';
+import { apiFetchMainPartnerArticle } from '@app/publicApi';
+import { IPartnerArticleREST } from '@features/partnersArticles/types';
 
 export const PartnerArticle: FC = () => {
   const { t } = useTranslation();
-  const [article, setArticle] = useState<IPartnerArticle | null>(null);
+  const [article, setArticle] = useState<IPartnerArticleREST | null>(null);
 
   useEffect(() => {
     (async () => {
-      const article = await getMainPartnerArticle();
+      const article = await apiFetchMainPartnerArticle();
 
       setArticle(article);
     })();
@@ -24,14 +24,14 @@ export const PartnerArticle: FC = () => {
     <article className="partner-article">
       <div className="partner-article__container container grid">
         <div className="partner-article__image-container">
-          <img className="partner-article__image" src={article.image} alt={article.title} />
+          <img className="partner-article__image" src={article.image.stringValue} alt={article.title.stringValue} />
         </div>
         <div className="partner-article__content">
           <span className="partner-article__caption">
             {t('partner_article_caption', { name: article['company-name'] })}
           </span>
-          <h2 className="partner-article__title">{article.title}</h2>
-          <p className="partner-article__text">{article.description}</p>
+          <h2 className="partner-article__title">{article.title.stringValue}</h2>
+          <p className="partner-article__text">{article.description.stringValue}</p>
         </div>
       </div>
     </article>

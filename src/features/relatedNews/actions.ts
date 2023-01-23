@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { apiFetchRelatedArticles } from '@app/api';
+import { apiFetchRelatedArticles } from '@app/publicApi';
 import { setRelatedArticles } from './slice';
 
 export const fetchRelatedArticles = createAsyncThunk('api/fetchRelatedArticles', (articleId: number, thunk) => {

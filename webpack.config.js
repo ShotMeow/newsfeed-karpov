@@ -4,6 +4,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlInlineScriptWebpackPlugin = require('html-inline-script-webpack-plugin');
+const CSSMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 const mode = process.env.NODE_ENV ? 'development' : 'production';
 
@@ -65,6 +66,10 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: mode === 'production' ? false : 'single',
+    splitChunks: {
+      chunks: 'all',
+    },
+    minimizer: [`...`, new CSSMinimizerWebpackPlugin()],
   },
   plugins: [
     new HtmlWebpackPlugin({
