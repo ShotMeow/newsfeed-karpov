@@ -15,7 +15,7 @@ export const ColorSchemeSwitcherButton = forwardRef(function ColorSchemeSwitcher
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   return (
-    <button className="color-scheme-switcher-button" ref={ref} onClick={onClick}>
+    <button aria-label="Переключить тему" className="color-scheme-switcher-button" ref={ref} onClick={onClick}>
       {scheme === 'auto' && <Auto />}
       {scheme === 'dark' && <Moon />}
       {scheme === 'light' && <Sun />}

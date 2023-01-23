@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import './EmailModal.css';
-import { ModalWrapper } from '@components/ModalWrapper/ModalWrapper';
+import { MODAL_DESCRIPTION_ID, MODAL_LABEL_ID, ModalWrapper } from '@components/ModalWrapper/ModalWrapper';
 import { Button } from '@components/Button/Button';
 
 interface EmailModalProps {
@@ -21,15 +21,21 @@ export const EmailModal: FC<EmailModalProps> = ({ onClose, shown }: EmailModalPr
     <ModalWrapper shown={shown} onClose={_onClose}>
       <div className="email-modal">
         <button className="email-modal__close" onClick={_onClose}>
-          <img src={require('../../../../images/cross.svg')} alt="Закрытие модального окна" />
+          <img
+            src={require('../../../../images/cross.svg')}
+            alt="Закрыть модальное окно"
+            className="email-modal__close-img"
+          />
         </button>
-        <h2 className="email-modal__title">
+        <h2 className="email-modal__title" id={MODAL_LABEL_ID}>
           Хотите получать последние новости от{' '}
           <a className="email-modal__link" href="#">
             Karpov.Courses?
           </a>
         </h2>
-        <p className="email-modal__text">Оставьте свой e-mail и будем на связи!</p>
+        <p className="email-modal__text" id={MODAL_DESCRIPTION_ID}>
+          Оставьте свой e-mail и будем на связи!
+        </p>
         <form
           className="email-modal__form"
           onSubmit={(e) => {

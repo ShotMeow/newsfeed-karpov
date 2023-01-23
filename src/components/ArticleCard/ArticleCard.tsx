@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import './ArticleCard.css';
 import classNames from 'classnames';
+import './ArticleCard.css';
+import { Source } from '@features/sources/components/Source/Source';
+import { beautifyDate } from '@app/utils';
 import { categoryTitles } from '@features/categories/constants';
 import { CategoryNames } from '@features/categories/types';
-import { beautifyDate } from '@app/utils';
-import { Source } from '@features/sources/components/Source/Source';
 import Image from '@components/Image/Image';
 
 interface Props {
@@ -43,18 +43,20 @@ export const ArticleCard: FC<Props> = ({
         className
       )}
     >
-      {hasImage && <Image className="article-card__image" src={image} alt="" />}
-      <div className="article-card__content">
-        <h2 className="article-card__title">{title}</h2>
-        {hasDescription && <span className="article-card__description">{description}</span>}
-        <div className="article-card__info">
-          {category && category.length > 0 && (
-            <span className="article-card__category">{categoryTitles[category]}</span>
-          )}
-          {date.length > 0 && <span className="article-card__date">{beautifyDate(date)}</span>}
-          {source.length > 0 && <Source>{source}</Source>}
+      <article className="article-card__in">
+        {hasImage && <Image className="article-card__image" src={image} alt={title} />}
+        <div className="article-card__content">
+          <h3 className="article-card__title">{title}</h3>
+          {hasDescription && <span className="article-card__description">{description}</span>}
+          <div className="article-card__info">
+            {category && category.length > 0 && (
+              <span className="article-card__category">{categoryTitles[category]}</span>
+            )}
+            {date.length > 0 && <span className="article-card__date">{beautifyDate(date)}</span>}
+            {source.length > 0 && <Source>{source}</Source>}
+          </div>
         </div>
-      </div>
+      </article>
     </Link>
   );
 };

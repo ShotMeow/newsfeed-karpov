@@ -1,18 +1,26 @@
-import React, { FC, PropsWithChildren, useState } from 'react';
-import './Page.css';
-import { Navigation } from '../Navigation/Navigation';
-import { Logo } from '../Logo/Logo';
+import React, { FC, Fragment, PropsWithChildren, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { EmailModal } from '@features/subscribeNotification/components/EmailModal/EmailModal';
+import { Dispatch } from '@app/store';
+import { fetchCategories } from '@features/categories/actions';
+import { fetchSources } from '@features/sources/actions';
 import { Header } from '@components/Header/Header';
 import { OfflineNotificationWatcher } from '@features/networkStatus/OfflineNotificationWatcher/OfflineNotificationWatcher';
+import { Footer } from '@components/Footer/Footer';
 
 const LS_EMAIL_SHOWN_KEY = 'newsfeed:email_modal_shown';
 
 export const Page: FC<PropsWithChildren> = ({ children }) => {
+  const dispatch = useDispatch<Dispatch>();
   const [emailModalShown, setEmailModalShown] = useState(!localStorage.getItem(LS_EMAIL_SHOWN_KEY));
 
+  React.useEffect(() => {
+    dispatch(fetchCategories());
+    dispatch(fetchSources());
+  }, []);
+
   return (
-    <>
+    <Fragment>
       <EmailModal
         shown={emailModalShown}
         onClose={() => {
@@ -24,21 +32,8 @@ export const Page: FC<PropsWithChildren> = ({ children }) => {
 
       <main>{children}</main>
 
-      <footer className="footer">
-        <div className="container">
-          <div className="footer__top">
-            <Logo />
-            <Navigation className="footer__navigation" />
-          </div>
-          <div className="footer__bottom">
-            Сделано на Frontend курсе в{' '}
-            <a className="footer__link" href="https://karpov.courses/frontend" target="_blank" rel="noreferrer">
-              Karpov.Courses
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       <OfflineNotificationWatcher />
-    </>
+    </Fragment>
   );
 };

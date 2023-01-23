@@ -19,7 +19,7 @@ export const PartnerArticle: FC = () => {
   }
 
   return (
-    <section className="partner-article">
+    <article className="partner-article">
       <div className="partner-article__container container grid">
         <div className="partner-article__image-container">
           <img className="partner-article__image" src={article.image} alt={article.title} />
@@ -30,6 +30,6 @@ export const PartnerArticle: FC = () => {
           <p className="partner-article__text">{article.description}</p>
         </div>
       </div>
-    </section>
+    </article>
   );
 };

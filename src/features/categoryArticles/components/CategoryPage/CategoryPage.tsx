@@ -11,9 +11,9 @@ import { fetchCategoryArticles } from '@features/categoryArticles/actions';
 import { getCategoryNews } from '@features/categoryArticles/selectors';
 import { getCategories } from '@features/categories/selectors';
 import { getSources } from '@features/sources/selectors';
-import { repeat } from '@app/utils';
-import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton';
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton';
+import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton';
+import { repeat } from '@app/utils';
 import { useAdaptive } from '@app/hooks';
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
@@ -30,46 +30,49 @@ export const CategoryPage: FC = () => {
 
   React.useEffect(() => {
     setLoading(true);
-    dispatch(fetchCategoryArticles(categoryIds[category]))
-      .unwrap()
-      .then(() => {
+    dispatch(fetchCategoryArticles(categoryIds[category])).then((response) => {
+      // @ts-ignore
+      if (!response.error) {
         setLoading(false);
-      });
+      }
+    });
   }, [category]);
 
   if (loading) {
     return (
-      <section className="category-page">
-        <HeroSkeleton title={categoryTitles[category]} className="category-page__hero" />
-        <div className="container grid">
-          <section className="category-page__content">
-            {repeat((i) => {
-              return <ArticleCardSkeleton key={i} className="category-page__item" />;
-            }, 6)}
-          </section>
-          {isDesktop && (
-            <section className="category-page__sidebar">
+      <div className="category-page" aria-label="Загрузка">
+        <div aria-hidden>
+          <HeroSkeleton title={categoryTitles[category]} className="category-page__hero" />
+          <div className="container grid">
+            <section className="category-page__content">
               {repeat((i) => {
-                return <SidebarArticleCardSkeleton key={i} className="category-page__sidebar-item" />;
-              }, 3)}
+                return <ArticleCardSkeleton key={i} className="category-page__item" />;
+              }, 6)}
             </section>
-          )}
+            {isDesktop && (
+              <section className="category-page__sidebar">
+                {repeat((i) => {
+                  return <SidebarArticleCardSkeleton key={i} className="category-page__sidebar-item" />;
+                }, 3)}
+              </section>
+            )}
+          </div>
         </div>
-      </section>
+      </div>
     );
   }
 
   const mainArticles = isMobile ? articles : articles.slice(3);
 
   return (
-    <section className="category-page">
+    <div className="category-page">
       <Hero
         title={categoryTitles[category]}
         image={require(`@images/categories/${category}.jpg`)}
         className="category-page__hero"
       />
-      <div className="container grid">
-        <section className="category-page__content">
+      <section className="container grid">
+        <div className="category-page__content">
           {mainArticles.map((item) => {
             const category = categories.find(({ id }) => item.category_id === id);
             const source = sources.find(({ id }) => item.source_id === id);
@@ -87,9 +90,9 @@ export const CategoryPage: FC = () => {
               />
             );
           })}
-        </section>
+        </div>
         {isDesktop && (
-          <section className="category-page__sidebar">
+          <aside className="category-page__sidebar">
             {articles.slice(0, 3).map((item) => {
               const source = sources.find(({ id }) => item.source_id === id);
 
@@ -105,9 +108,9 @@ export const CategoryPage: FC = () => {
                 />
               );
             })}
-          </section>
+          </aside>
         )}
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };

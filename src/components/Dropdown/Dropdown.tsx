@@ -1,8 +1,10 @@
-import React, { FC, HTMLAttributes, RefObject, useEffect, useState } from 'react';
+import React, { FC, HTMLAttributes, RefObject, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import throttle from 'lodash.throttle';
-import './Dropdown.css';
 import classNames from 'classnames';
+import './Dropdown.css';
+import { CSSTransition } from 'react-transition-group';
+import { createFocusTrap } from 'focus-trap';
 
 interface DropdownProps extends HTMLAttributes<HTMLElement> {
   targetRef: RefObject<HTMLElement>;
@@ -29,9 +31,21 @@ export const Dropdown: FC<DropdownProps> = ({
   ...restProps
 }: DropdownProps) => {
   const [coords, setCoords] = useState({ top: 0, right: 0 });
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setCoords(calcCoords(targetRef.current as HTMLElement));
+    const trap = createFocusTrap(ref.current as HTMLDivElement, {
+      allowOutsideClick: true,
+    });
+
+    if (shown) {
+      trap.activate();
+      setCoords(calcCoords(targetRef.current as HTMLElement));
+    }
+
+    return () => {
+      trap.deactivate();
+    };
   }, [shown]);
 
   useEffect(() => {
@@ -57,12 +71,12 @@ export const Dropdown: FC<DropdownProps> = ({
     };
   }, [onShownChange, shown]);
 
-  return shown
-    ? createPortal(
-        <div {...restProps} className={classNames('dropdown', className)} style={{ ...style, ...coords }}>
-          {children}
-        </div>,
-        document.getElementById('overlay') as HTMLElement
-      )
-    : null;
+  return createPortal(
+    <CSSTransition in={shown} timeout={200} mountOnEnter={true} unmountOnExit={true} classNames="dropdown-animation">
+      <div ref={ref} {...restProps} className={classNames('dropdown', className)} style={{ ...style, ...coords }}>
+        {children}
+      </div>
+    </CSSTransition>,
+    document.getElementById('overlay') as HTMLElement
+  );
 };

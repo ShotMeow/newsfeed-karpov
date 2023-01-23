@@ -47,6 +47,10 @@
   cursor: pointer;
 }
 
+.email-modal__close-img {
+  display: block;
+}
+
 @media all and (min-width: 1024px) {
   .email-modal {
     width: 522px;

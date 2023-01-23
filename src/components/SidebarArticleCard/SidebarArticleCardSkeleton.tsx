@@ -11,15 +11,17 @@ interface Props {
 export const SidebarArticleCardSkeleton: FC<Props> = ({ className }: Props) => {
   return (
     <div className={classNames('sidebar-article-card', className)}>
-      <div className="sidebar-article-card__media">
-        <Image className="sidebar-article-card__image" skeleton />
-      </div>
-      <h3 className="sidebar-article-card__title">
-        <SkeletonText rowsCount={3} />
-      </h3>
-      <div className="sidebar-article-card__source">
-        <SkeletonText />
-      </div>
+      <article className="sidebar-article-card__in">
+        <div className="sidebar-article-card__media">
+          <Image className="sidebar-article-card__image" skeleton />
+        </div>
+        <h3 className="sidebar-article-card__title">
+          <SkeletonText rowsCount={3} />
+        </h3>
+        <div className="sidebar-article-card__source">
+          <SkeletonText />
+        </div>
+      </article>
     </div>
   );
 };

@@ -53,6 +53,11 @@
   box-sizing: border-box;
 }
 
+.header__mobile-back-button:focus-visible {
+  outline: none;
+  box-shadow: var(--inner-focus-border);
+}
+
 .header__mobile-back-button:hover {
   color: var(--constant-accent);
 }
@@ -68,6 +73,11 @@
 .header__mobile-navigation .navigation__link {
   display: block;
   padding: var(--container-padding);
+}
+
+.header__mobile-navigation .navigation__link:focus-visible {
+  outline: none;
+  box-shadow: var(--inner-focus-border);
 }
 
 .header__mobile-overlay {

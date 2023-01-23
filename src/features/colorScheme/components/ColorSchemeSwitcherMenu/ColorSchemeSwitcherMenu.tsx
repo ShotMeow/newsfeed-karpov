@@ -14,34 +14,52 @@ interface Props {
 
 export const ColorSchemeSwitcherMenu: FC<Props> = ({ selectedScheme, onChangeScheme, className }) => {
   return (
-    <div className={classNames('color-scheme-switcher-menu', className)}>
-      <button className="color-scheme-switcher-menu__option" onClick={() => onChangeScheme('auto')}>
+    <div className={classNames('color-scheme-switcher-menu', className)} role="listbox">
+      <button
+        aria-selected={selectedScheme === 'auto'}
+        role="option"
+        className="color-scheme-switcher-menu__option"
+        onClick={() => onChangeScheme('auto')}
+      >
         <Auto />
         <span className="color-scheme-switcher-menu__text">Авто</span>
         {selectedScheme === 'auto' && (
           <img
+            aria-hidden
             className="color-scheme-switcher-menu__check"
             src={require('../../../../images/check.svg')}
             alt="Выбранная тема"
           />
         )}
       </button>
-      <button className="color-scheme-switcher-menu__option" onClick={() => onChangeScheme('light')}>
+      <button
+        aria-selected={selectedScheme === 'light'}
+        role="option"
+        className="color-scheme-switcher-menu__option"
+        onClick={() => onChangeScheme('light')}
+      >
         <Sun />
         <span className="color-scheme-switcher-menu__text">Светлая</span>
         {selectedScheme === 'light' && (
           <img
+            aria-hidden
             className="color-scheme-switcher-menu__check"
             src={require('../../../../images/check.svg')}
             alt="Выбранная тема"
           />
         )}
       </button>
-      <button className="color-scheme-switcher-menu__option" onClick={() => onChangeScheme('dark')}>
+      <button
+        aria-selected={selectedScheme === 'dark'}
+        role="option"
+        className="color-scheme-switcher-menu__option"
+        onClick={() => onChangeScheme('dark')}
+      >
         <Moon />
         <span className="color-scheme-switcher-menu__text">Темная</span>
         {selectedScheme === 'dark' && (
           <img
+            aria-hidden
             className="color-scheme-switcher-menu__check"
             src={require('../../../../images/check.svg')}
             alt="Выбранная тема"

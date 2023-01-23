@@ -1,13 +1,17 @@
 .article-card {
-  display: flex;
-  flex-direction: column;
-  border-left: 4px solid var(--foreground-primary);
-  padding-left: 12px;
+  display: block;
 }
 
 .article-card:hover {
   color: var(--constant-accent);
   border-left-color: var(--constant-accent);
+}
+
+.article-card__in {
+  display: flex;
+  flex-direction: column;
+  border-left: 4px solid var(--foreground-primary);
+  padding-left: 12px;
 }
 
 .article-card__image {
@@ -74,7 +78,7 @@
 }
 
 @media all and (min-width: 1024px) {
-  .article-card {
+  .article-card__in {
     flex-direction: row;
   }
 

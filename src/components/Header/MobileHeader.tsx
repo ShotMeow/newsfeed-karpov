@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { Logo } from '@components/Logo/Logo';
 import { Navigation } from '@components/Navigation/Navigation';
@@ -6,8 +6,11 @@ import { CSSTransition } from 'react-transition-group';
 import { Burger } from '@components/Icons/Burger';
 import { Cross } from '@components/Icons/Cross';
 import { ColorSchemeSwitcherMobile } from '@features/colorScheme/components/ColorSchemeSwitcherMobile/ColorSchemeSwitcherMobile';
+import { createFocusTrap } from 'focus-trap';
 
 export const MobileHeader: FC = () => {
+  const ref = useRef<HTMLElement | null>(null);
+
   const [isOpenMenu, toggleMenu] = useState(false);
   const [isOpenSubMenu, toggleSubMenu] = useState(false);
   const documentKeydownListener = (event: KeyboardEvent) => {
@@ -17,11 +20,15 @@ export const MobileHeader: FC = () => {
   };
 
   useEffect(() => {
+    const trap = createFocusTrap(ref.current as HTMLElement);
+
     if (isOpenMenu) {
+      trap.activate();
       document.documentElement.classList.add('--prevent-scroll');
     }
 
     return () => {
+      trap.deactivate();
       document.documentElement.classList.remove('--prevent-scroll');
     };
   }, [isOpenMenu]);
@@ -39,10 +46,14 @@ export const MobileHeader: FC = () => {
   }, [isOpenMenu]);
 
   return (
-    <header className="header">
+    <header className="header" ref={ref}>
       <div className="container header__mobile-container">
         <Logo />
-        <button className="header__mobile-button" onClick={() => toggleMenu(!isOpenMenu)}>
+        <button
+          aria-label={isOpenMenu ? 'Скрыть меню' : 'Открыть меню'}
+          className="header__mobile-button"
+          onClick={() => toggleMenu(!isOpenMenu)}
+        >
           {isOpenMenu ? <Cross /> : <Burger />}
         </button>
       </div>
