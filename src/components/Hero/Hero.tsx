@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { FC } from 'react';
 import './Hero.css';
 import classNames from 'classnames';
 import { Title } from '@components/Title/Title';
@@ -11,7 +11,7 @@ interface HeroProps {
   className?: string;
 }
 
-export const Hero = memo<HeroProps>(({ image = '', title, text = '', className }) => {
+export const Hero: FC<HeroProps> = ({ image = '', title, text = '', className }) => {
   const hasImage = image.length > 0;
 
   return (
@@ -35,6 +35,4 @@ export const Hero = memo<HeroProps>(({ image = '', title, text = '', className }
       </div>
     </section>
   );
-});
-
-Hero.displayName = 'Hero';
+};

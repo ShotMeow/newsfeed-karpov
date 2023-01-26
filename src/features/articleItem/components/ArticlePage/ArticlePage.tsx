@@ -84,69 +84,67 @@ export const ArticlePage: FC = () => {
 
   return (
     <div className="article-page">
-      <div>
-        <Hero title={articleItem.title} image={articleItem.image} className="article-page__hero" />
-        <div className="container article-page__main">
-          <section className="article-page__info" aria-label={t('Информация о статье') || ''}>
-            <span className="article-page__category">{t(`category_${articleItem.category.name}`)}</span>
-            <span className="article-page__date">{beautifyDate(articleItem.date, i18n.language)}</span>
-            {articleItem.link.length > 0 && (
-              <Source className="article-page__source" href={articleItem.link}>
-                {articleItem.source?.name}
-              </Source>
-            )}
-          </section>
-          <section className="grid" aria-label={t('article_page_content_title') || ''}>
-            <div className="article-page__content">
-              <p>{articleItem.text}</p>
-            </div>
+      <Hero title={articleItem.title} image={articleItem.image} className="article-page__hero" />
+      <div className="container article-page__main">
+        <section className="article-page__info" aria-label={t('Информация о статье') || ''}>
+          <span className="article-page__category">{t(`category_${articleItem.category.name}`)}</span>
+          <span className="article-page__date">{beautifyDate(articleItem.date, i18n.language)}</span>
+          {articleItem.link.length > 0 && (
+            <Source className="article-page__source" href={articleItem.link}>
+              {articleItem.source?.name}
+            </Source>
+          )}
+        </section>
+        <section className="grid" aria-label={t('article_page_content_title') || ''}>
+          <div className="article-page__content">
+            <p>{articleItem.text}</p>
+          </div>
 
-            {isDesktop && (
-              <aside className="article-page__sidebar" aria-label={t('article_page_sub_article_title') || ''}>
-                {relatedArticles.slice(3, 9).map((item) => {
-                  const source = sources.find(({ id }) => item.source_id === id);
-
-                  return (
-                    <SidebarArticleCard
-                      className="article-page__sidebar-item"
-                      date={item.date}
-                      key={item.id}
-                      id={item.id}
-                      title={item.title}
-                      source={source?.name || ''}
-                      image={item.image}
-                    />
-                  );
-                })}
-              </aside>
-            )}
-          </section>
-        </div>
-
-        <section className="article-page__related-articles">
-          <div className="container">
-            <Title Component="h2" className="article-page__related-articles-title">
-              {t('next_article')}
-            </Title>
-            <div className="grid article-page__related-articles-list">
-              {relatedArticles.slice(0, 3).map((item) => {
+          {isDesktop && (
+            <aside className="article-page__sidebar" aria-label={t('article_page_sub_article_title') || ''}>
+              {relatedArticles.slice(3, 9).map((item) => {
                 const source = sources.find(({ id }) => item.source_id === id);
 
                 return (
-                  <ArticleCard
-                    className="article-page__related-articles-item"
+                  <SidebarArticleCard
+                    className="article-page__sidebar-item"
+                    date={item.date}
                     key={item.id}
                     id={item.id}
                     title={item.title}
-                    date={item.date}
-                    source={source?.name}
+                    source={source?.name || ''}
+                    image={item.image}
                   />
                 );
               })}
-            </div>
-          </div>
+            </aside>
+          )}
         </section>
       </div>
+
+      <section className="article-page__related-articles">
+        <div className="container">
+          <Title Component="h2" className="article-page__related-articles-title">
+            {t('next_article')}
+          </Title>
+          <div className="grid article-page__related-articles-list">
+            {relatedArticles.slice(0, 3).map((item) => {
+              const source = sources.find(({ id }) => item.source_id === id);
+
+              return (
+                <ArticleCard
+                  className="article-page__related-articles-item"
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  date={item.date}
+                  source={source?.name}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
