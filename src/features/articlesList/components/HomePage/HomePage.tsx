@@ -101,6 +101,7 @@ export const HomePage: FC = () => {
       {firstArticle && (
         <Link className="home-page__hero-link" to={`/article/${firstArticle.id}`}>
           <Hero
+            autoHeight={false}
             className="home-page__hero"
             image={firstArticle.image}
             title={firstArticle.title}

@@ -7,11 +7,12 @@ import { Source } from '@features/sources/components/Source/Source';
 import { beautifyDate } from '@app/utils';
 import { CategoryNames } from '@features/categories/types';
 import Image from '@components/Image/Image';
+import { TExtendedImage } from '@features/articleItem/types';
 
 interface Props {
   id: number;
   title: string;
-  image?: string;
+  image?: TExtendedImage;
   category?: CategoryNames;
   description?: string;
   source?: string;
@@ -22,7 +23,7 @@ interface Props {
 export const ArticleCard: FC<Props> = ({
   id,
   title,
-  image = '',
+  image,
   category,
   description = '',
   source = '',
@@ -30,7 +31,7 @@ export const ArticleCard: FC<Props> = ({
   className,
 }) => {
   const hasDescription = description.length > 0;
-  const hasImage = image.length > 0;
+  const hasImage = image && image.source.length > 0;
 
   const { t, i18n } = useTranslation();
 
@@ -46,7 +47,7 @@ export const ArticleCard: FC<Props> = ({
       )}
     >
       <article className="article-card__in">
-        {hasImage && <Image className="article-card__image" src={image} alt={title} />}
+        {hasImage && <Image className="article-card__image" data={image} maxWidth={200} alt={title} />}
         <div className="article-card__content">
           <h3 className="article-card__title">{title}</h3>
           {hasDescription && <span className="article-card__description">{description}</span>}

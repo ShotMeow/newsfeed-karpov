@@ -98,4 +98,5 @@ module.exports = {
       disableDotRule: true,
     },
   },
+  devtool: mode === 'production' ? false : 'eval-cheap-module-source-map',
 };

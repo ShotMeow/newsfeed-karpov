@@ -15,3 +15,9 @@
 .image--loaded .image__element {
   opacity: 1;
 }
+
+.image--bg {
+  background-color: inherit;
+  background-position: center center;
+  background-size: contain;
+}

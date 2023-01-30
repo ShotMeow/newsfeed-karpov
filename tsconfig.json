@@ -26,7 +26,8 @@
         "images/*"
       ]
     },
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "sourceMap": true
   },
   "include": [
     "src"
