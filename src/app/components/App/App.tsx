@@ -21,7 +21,7 @@ export const App: FC = () => {
   return (
     <Routes>
       <Route
-        path="/admin"
+        path="/admin/*"
         element={
           <React.Suspense fallback={<div>loading</div>}>
             <Admin />

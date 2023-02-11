@@ -13,10 +13,10 @@ const firebaseApp = initializeAPI();
 
 const Admin: FC = () => {
   return (
-    <Routes>
-      <AuthContextProvider firebaseApp={firebaseApp}>
+    <AuthContextProvider firebaseApp={firebaseApp}>
+      <Routes>
         <Route
-          path="/admin"
+          path="/"
           element={
             <PrivateRoute>
               <AdminPage>
@@ -53,8 +53,8 @@ const Admin: FC = () => {
             </PrivateRoute>
           }
         />
-      </AuthContextProvider>
-    </Routes>
+      </Routes>
+    </AuthContextProvider>
   );
 };
 
