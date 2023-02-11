@@ -7,6 +7,7 @@ import { store } from '@app/store';
 import { NetworkStatusContextProvider } from '@features/networkStatus/NetworkStatusContextProvider';
 import { initI18n } from '@features/locale/utils';
 import { createRoot } from 'react-dom/client';
+import * as Sentry from '@sentry/react';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
@@ -20,6 +21,12 @@ if ('serviceWorker' in navigator) {
         // eslint-disable-next-line no-console
         console.error('cant register SW', error);
       });
+  });
+}
+
+if (process.env.NODE_ENV !== 'development') {
+  Sentry.init({
+    dsn: 'https://9aeadf12f36d4637a029c039db8767ef@o4504661115928576.ingest.sentry.io/4504661118025728',
   });
 }
 
