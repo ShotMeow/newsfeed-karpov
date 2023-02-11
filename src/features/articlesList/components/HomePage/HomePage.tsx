@@ -18,7 +18,7 @@ import { getSources } from '@features/sources/selectors';
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton';
 import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton';
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton';
-import { repeat } from '@app/utils';
+import { repeat, setMeta } from '@app/utils';
 import { useAdaptive } from '@app/hooks';
 import { useTranslation } from 'react-i18next';
 import { Locale } from '@features/locale/types';
@@ -33,6 +33,16 @@ export const HomePage: FC = () => {
   const [loading, setLoading] = useState(true);
   const { isDesktop, isMobile } = useAdaptive();
   const { t, i18n } = useTranslation();
+
+  React.useEffect(() => {
+    setMeta({
+      'og:title': 'KC News',
+      'og:description': t('page_head_description'),
+      'og:locale': i18n.language,
+      'og:url': window.location.href,
+      'og:image': `${window.location.origin}${require('@images/og_default_image.png')}`,
+    });
+  }, [i18n.language]);
 
   React.useEffect(() => {
     setLoading(true);
@@ -115,7 +125,7 @@ export const HomePage: FC = () => {
         </Title>
         <div className="grid">
           {trendArticles.map(({ id, title, category_id, source_id, date }) => {
-            const category = categories[category_id];
+            const category = categories.find((item) => item.id === category_id);
             const source = sources.find(({ id }) => source_id === id);
 
             return (

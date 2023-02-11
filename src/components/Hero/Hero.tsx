@@ -11,9 +11,10 @@ interface HeroProps {
   text?: string;
   className?: string;
   autoHeight?: boolean;
+  fullTitle?: boolean;
 }
 
-export const Hero = memo<HeroProps>(({ image, title, text = '', className, autoHeight = true }) => {
+export const Hero = memo<HeroProps>(({ image, title, text = '', className, autoHeight = true, fullTitle }) => {
   const hasExtendedImage = typeof image === 'object' && image.source.length > 0;
   const hasSimpleImage = typeof image === 'string' && image.length > 0;
 
@@ -32,7 +33,13 @@ export const Hero = memo<HeroProps>(({ image, title, text = '', className, autoH
         {hasExtendedImage && <Image data={image} className="hero__image" autoHeight={autoHeight} alt={title} />}
         <div className="hero__container container">
           <div className="hero__content">
-            <Title className="hero__title">{title}</Title>
+            <Title
+              className={classNames('hero__title', {
+                'hero__title--full': fullTitle,
+              })}
+            >
+              {title}
+            </Title>
             {text.length > 0 && <p className="hero__text">{text}</p>}
           </div>
         </div>

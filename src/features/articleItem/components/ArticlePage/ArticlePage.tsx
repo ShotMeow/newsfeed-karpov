@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import './ArticlePage.css';
-import { beautifyDate, repeat } from '@app/utils';
+import { beautifyDate, repeat, setMeta } from '@app/utils';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
 import { Hero } from '@components/Hero/Hero';
 import { ArticleCard } from '@components/ArticleCard/ArticleCard';
@@ -33,6 +33,20 @@ export const ArticlePage: FC = () => {
   const lastLoadedId = useRef<number | null | undefined>(articleItem?.id);
 
   useEffect(() => {
+    if (!articleItem) {
+      return;
+    }
+
+    setMeta({
+      'og:title': `${articleItem.title} — KC News`,
+      'og:description': articleItem.description,
+      'og:url': window.location.href,
+      'og:locale': articleItem.lang,
+      'og:image': articleItem.image.source,
+    });
+  }, [articleItem]);
+
+  useEffect(() => {
     lastLoadedId.current = articleItem?.id;
   }, [articleItem]);
 
@@ -58,10 +72,12 @@ export const ArticlePage: FC = () => {
     const autoHeight = !!lastLoadedId.current;
     return (
       <Hero
+        key={articleItem.id}
         title={articleItem.title}
         autoHeight={autoHeight}
         image={articleItem.image}
         className="article-page__hero"
+        fullTitle
       />
     );
   }, [articleItem]);
@@ -112,7 +128,7 @@ export const ArticlePage: FC = () => {
           <section className="article-page__related-articles">
             <div className="container">
               <Title Component="h2" className="article-page__related-articles-title">
-                Читайте также:
+                {t('article_page_recent_title')}
               </Title>
               <div className="grid article-page__related-articles-list">
                 {repeat((i) => {
@@ -145,7 +161,7 @@ export const ArticlePage: FC = () => {
           <section className="article-page__info" aria-label={t('Информация о статье') || ''}>
             {sourceText}
           </section>
-          <section className="grid" aria-label={t('article_page_content_title') || ''}>
+          <section className="grid" aria-label={t('article_page_title') || ''}>
             <div className="article-page__content">
               <p>{mainText}</p>
             </div>
@@ -175,7 +191,7 @@ export const ArticlePage: FC = () => {
         <section className="article-page__related-articles">
           <div className="container">
             <Title Component="h2" className="article-page__related-articles-title">
-              Читайте также:
+              {t('article_page_recent_title')}:
             </Title>
             <div className="grid article-page__related-articles-list">
               {relatedArticles.slice(0, 3).map((item) => {

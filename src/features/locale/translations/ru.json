@@ -2,6 +2,7 @@
   "article_page_content_title": "Статья",
   "article_page_sub_article_title": "Второстепенный список статей",
   "article_page_title": "Информация о статье",
+  "article_page_recent_title": "Читайте также",
   "button_spinner": "Спиннер",
   "category_fashion": "Мода",
   "category_karpov.courses": "Karpov",
@@ -31,5 +32,6 @@
   "offline_notification_text": "Сайт работает в оффлайне. Проверьте доступ к сети",
   "partner_article_caption": "Партнерский материал от {name}",
   "source_placeholder": "Источник",
-  "next_article": "Читайте дальше:"
+  "next_article": "Читайте дальше:",
+  "page_head_description": "Новостная лента, разработанная на курсе по фронтенду от karpov.courses"
 }

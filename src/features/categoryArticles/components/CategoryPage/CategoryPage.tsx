@@ -14,7 +14,7 @@ import { getCategories } from '@features/categories/selectors';
 import { getSources } from '@features/sources/selectors';
 import { HeroSkeleton } from '@components/Hero/HeroSkeleton';
 import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton';
-import { repeat } from '@app/utils';
+import { repeat, setMeta } from '@app/utils';
 import { useAdaptive } from '@app/hooks';
 import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton';
 import { SidebarArticleCard } from '@components/SidebarArticleCard/SidebarArticleCard';
@@ -29,6 +29,16 @@ export const CategoryPage: FC = () => {
   const [loading, setLoading] = useState(true);
   const { isMobile, isDesktop } = useAdaptive();
   const { t, i18n } = useTranslation();
+
+  React.useEffect(() => {
+    setMeta({
+      'og:title': `KC News – ${t(`category_${category}`)}`,
+      'og:description': t('page_head_description'),
+      'og:locale': i18n.language,
+      'og:url': window.location.href,
+      'og:image': `${window.location.origin}${require(`@images/categories/${category}.jpg`)}`,
+    });
+  }, [i18n.language]);
 
   React.useEffect(() => {
     setLoading(true);

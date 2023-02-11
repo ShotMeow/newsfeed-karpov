@@ -2,6 +2,7 @@
   "article_page_content_title": "Article",
   "article_page_sub_article_title": "Secondary articles",
   "article_page_title": "Article info",
+  "article_page_recent_title": "Read more",
   "button_spinner": "Spinner",
   "category_fashion": "Fashion",
   "category_karpov.courses": "Karpov",
@@ -31,5 +32,6 @@
   "offline_notification_text": "The website is offline. Check your network access",
   "partner_article_caption": "Sponsored article from {name}",
   "source_placeholder": "Source",
-  "next_article": "Read more:"
+  "next_article": "Read more:",
+  "page_head_description": "News Feed developed on the frontend course from karpov.courses"
 }

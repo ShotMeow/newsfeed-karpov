@@ -28,7 +28,7 @@ export const PartnerArticle: FC = () => {
         </div>
         <div className="partner-article__content">
           <span className="partner-article__caption">
-            {t('partner_article_caption', { name: article['company-name'] })}
+            {t('partner_article_caption', { name: article['company-name'].stringValue })}
           </span>
           <h2 className="partner-article__title">{article.title.stringValue}</h2>
           <p className="partner-article__text">{article.description.stringValue}</p>

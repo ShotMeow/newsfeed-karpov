@@ -47,6 +47,10 @@
   word-break: break-word;
 }
 
+.hero__title--full {
+  display: block;
+}
+
 .hero__text {
   font-size: 14px;
   line-height: 20px;
@@ -69,7 +73,6 @@
 
   .hero__title {
     word-break: normal;
-    -webkit-line-clamp: 3;
   }
 
   .hero__text {

@@ -10,6 +10,8 @@ export function applyLocale(locale: Locale): void {
   localStorage.setItem(LS_LOCALE_KEY, locale);
 
   i18n.changeLanguage(locale);
+
+  document.documentElement.lang = locale;
 }
 
 export function getSavedLocale(): Locale {
