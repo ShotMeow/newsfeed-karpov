@@ -5,10 +5,11 @@ const StylelintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlInlineScriptWebpackPlugin = require('html-inline-script-webpack-plugin');
 const CSSMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+const SentryPlugin = require('@sentry/webpack-plugin');
 
 const mode = process.env.NODE_ENV ? 'development' : 'production';
 
-module.exports = {
+const config = {
   mode,
   entry: {
     main: './src/index.tsx',
@@ -100,3 +101,17 @@ module.exports = {
   },
   devtool: mode === 'production' ? false : 'eval-cheap-module-source-map',
 };
+
+if (process.env.SENTRY_RELEASE) {
+  config.plugins.push(
+    new SentryPlugin({
+      include: './dist',
+      release: process.env.SENTRY_RELEASE,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: 'newsfeed-hf',
+      project: 'newsfeed-web',
+    })
+  );
+}
+
+module.exports = config;

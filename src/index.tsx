@@ -8,6 +8,7 @@ import { NetworkStatusContextProvider } from '@features/networkStatus/NetworkSta
 import { initI18n } from '@features/locale/utils';
 import { createRoot } from 'react-dom/client';
 import * as Sentry from '@sentry/react';
+import { Error } from '@components/Error/Error';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
@@ -34,12 +35,14 @@ const root = createRoot(document.getElementById('root') as HTMLElement);
 
 initI18n(() => {
   root.render(
-    <Provider store={store}>
-      <NetworkStatusContextProvider>
-        <Router>
-          <App />
-        </Router>
-      </NetworkStatusContextProvider>
-    </Provider>
+    <Sentry.ErrorBoundary fallback={<Error />}>
+      <Provider store={store}>
+        <NetworkStatusContextProvider>
+          <Router>
+            <App />
+          </Router>
+        </NetworkStatusContextProvider>
+      </Provider>
+    </Sentry.ErrorBoundary>
   );
 });
