@@ -6,15 +6,17 @@ import sourcesReducer from '@features/sources/slice';
 import relatedArticlesReducer from '@features/relatedNews/slice';
 import articleItemReducer from '@features/articleItem/slice';
 
+export const reducer = {
+  articlesList: articlesListReducer,
+  categoryArticles: categoryArticlesReducer,
+  categories: categoriesReducer,
+  sources: sourcesReducer,
+  relatedArticles: relatedArticlesReducer,
+  articleItem: articleItemReducer,
+};
+
 export const store = configureStore({
-  reducer: {
-    articlesList: articlesListReducer,
-    categoryArticles: categoryArticlesReducer,
-    categories: categoriesReducer,
-    sources: sourcesReducer,
-    relatedArticles: relatedArticlesReducer,
-    articleItem: articleItemReducer,
-  },
+  reducer,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

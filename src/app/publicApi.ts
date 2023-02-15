@@ -5,8 +5,8 @@ import { RelatedArticlesAPI } from '@features/relatedNews/types';
 import { ArticleItemAPI } from '@features/articleItem/types';
 import { IPartnerArticleREST } from '@features/partnersArticles/types';
 
-const API_END_POINT = 'https://frontend.karpovcourses.net/api';
-const API_VERSION = 'v3';
+export const API_END_POINT = 'https://frontend.karpovcourses.net/api';
+export const API_VERSION = 'v3';
 
 export const apiFetchNews = (lang: string): Promise<NewsAPI> => {
   return fetch(`${API_END_POINT}/${API_VERSION}/${lang}/news`).then((response) => response.json());
